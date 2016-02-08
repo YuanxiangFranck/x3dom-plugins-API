@@ -55,14 +55,6 @@
               <!--   <Varying -->
               <!--      name="v_data" type="float"></Varying> -->
               <!-- </CustomAttributeNode> -->
-              <!-- <CustomAttributeNode -->
-              <!--    vertexShaderPartMain="fragTexcoord = vec2((( faceSetData - colormap_min ) / ( colormap_max - colormap_min )), 0.0);"; -->
-              <!--    > -->
-              <!--   <Uniform -->
-              <!--      name="colormap_min" value="-0.00000002" type="float"></Uniform> -->
-              <!--   <Uniform id="uni" -->
-              <!--      name="colormap_max" value="0.0000002" type="float"></Uniform> -->
-              <!-- </CustomAttributeNode> -->
             </IndexedFaceSet>
           </shape>
           <ClipPlane
@@ -95,27 +87,24 @@
       </scene>
     </x3d>
     <div style="margin-left: 800px">
-      <b>Clip</b><br>
+      <b>Clip Plan :</b><br>
       <input id="clipSlider" type="range"
-             min="0" max="1" step="0.001" value="0"> </input>
+             min="0" max="1" step="0.001" value="0"> </input><br>
       <button id="clipOnButton"  type="button">hide clip plan</button>
       <br>
       <span id="disp" style="color:#00CC00"> loading...</span> <br>
-      <b>Color map : border1</b><br>
+      <b>Color map :/b><br>
       <input id="colorMap1" type="range"
              min="0" max="1" step="0.05" value="0"> </input><br>
-      <b>Color map : boder2</b><br>
       <input id="colorMap2" type="range"
              min="0" max="1" step="0.05" value="1"> </input><br>
       <span id="colorMapText" style="color:#00CC00">  </span> <br>
-      <b>ISO- volume</b><br>
+      <b>Threshold :</b><br>
       <input id="threshold1" type="range"
-             min="0" max="1" step="0.05" value="0"> </input>
+             min="0" max="1" step="0.05" value="0"> </input><br>
       <input id="threshold2" type="range"
              min="0" max="1" step="0.05" value="1"> </input>
     </div>
     <script type="text/javascript" charset="utf-8" src='./bundle.js'></script>
   </body>
 </html>
-<FloatVertexAttribute
-                 id="triSetAttr" name="triSetData" numComponents="1" value=""> </FloatVertexAttribute>
