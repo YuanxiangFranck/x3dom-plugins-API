@@ -1,14 +1,46 @@
 # X3DOM Plugins
 
-In my project I worked to created new nodes in x3dom.
-I wanted to created some nodes that influence the geometry (color-map, threshold, clip-Plan)
+## Presentation
+In my project I worked to created new nodes in x3dom, for scientific mesh visualisation and analysis.
+I wanted to created some nodes that influence the geometry (color-map, threshold, clip-Plan).
+
+
 I had two goals in mind:
 
 1. Create a simple interface for the final users: The final node should works like any other x3dom node
 2. Create a API that allow one to create a node in x3dom in an importable script (without touching x3dom source code)
 
-My solution was to create a new node, named CustomAttributeNode where you can add shaders parts uniforms and varying. The data of the geometry are set using the x3dom node : FloatVertexAttribute.
-Here an example of CustomAttributeNode to create a threshold node.
+**Example:**
+```html
+<TriangleSet>
+  <Threshold
+     upperBound="1" lowerBound="0" dataName="triSetData" > </Threshold>
+  <FloatVertexAttribute
+     name="triSetData" numComponents="1" value="..."> </FloatVertexAttribute>
+  ...
+</TriangleSet>
+```
+This allow one to easily change the bound or change the set of data only using setAttribute.
+
+
+## Quick start
+
+In order to try my example :
+
+1. clone the repository
+
+2. run : **python server.py**
+
+3. open in browser [**http://localhost:8000/index.html**](http://localhost:8000/index.html)
+
+
+## x3dom API
+
+My solution was to create a new node: CustomAttributeNode.
+This node is a generic node to add uniforms, varying and shader parts into x3dom.
+The data of the geometry are set using the x3dom node : FloatVertexAttribute.
+
+**Example of CustomAttributeNode to create a threshold node.**
 ```html
 <FloatVertexAttribute
    name="custom_data" numComponents="1" value="..."> </FloatVertexAttribute>
@@ -25,9 +57,12 @@ Here an example of CustomAttributeNode to create a threshold node.
 
 The CustomAttributeNode is the entry point in x3dom code for my API.
 
-The idea of the my API is to create a new node inherited from CustomAttributeNode and implement itself.
+## JavaScript API
 
-Example :
+The idea of the my API is to create a new node inherited from CustomAttributeNode.
+I wrote some function to make the implementation of the node easier.
+
+**Example :**
 ```javascript
 
 x3dom.registerNodeType(
@@ -58,7 +93,7 @@ x3dom.registerNodeType(
         },
         {
             /**
-             * Functun call in the creation of the nodes
+             * Function called in the creation of the nodes
              */
             nodeChanged: function(){
                 // Add the unfiforms
@@ -92,11 +127,20 @@ x3dom.registerNodeType(
 );
 ```
 
+## working with npm
+install the packages with : **npm install**
+use browserify with : **npm run build**
+use watchify with : **npm run watch**
+run server + watchify with : **npm run start**
 
-* NOTE 1 : I an using the x3dom node Uniform, and it is not a good idea I will changes this to a custom node later.
 
-* Note 2: In order to use FloatVertexAttribute, I needed the pull request x3dom/github-flavored-markdown#610 to use setAttribute on FloatVertexAttribute.
 
-* NOTE 3 : I worked with npm, so I add the bundle with x3dom and my scripts. But It should work without npm.
 
-* NOTE 4 : in the example I load binaries so a server is needed, use : python server.py
+## Notes
+
+### x3dom
+I here I used a custom version of x3dom, with the CustomAttributeNode implemented
+I am also working on the top of a branch (pull request #610 ) in x3dom in order to use FloatVertexAttribute.
+
+### Uniform node
+In the CustomAttributeNode I used the x3dom node Uniform, I will changed it for a custom node.
