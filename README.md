@@ -25,7 +25,7 @@ This allow one to easily change the bound or change the set of data only using s
 
 ## Quick start
 
-In order to try my example :
+In order to try the example :
 
 1. clone the repository
 
@@ -42,8 +42,6 @@ The data of the geometry are set using the x3dom node : FloatVertexAttribute.
 
 **Example of CustomAttributeNode to create a threshold node.**
 ```html
-<FloatVertexAttribute
-   name="custom_data" numComponents="1" value="..."> </FloatVertexAttribute>
 <CustomAttributeNode
    vertexShaderPartMain="v_data = custom_data;"
    fragmentShaderPartMain="if (v_data > u_max) {discard;};"
@@ -53,9 +51,12 @@ The data of the geometry are set using the x3dom node : FloatVertexAttribute.
   <Varying
      name="v_data" type="float"></Varying>
 </CustomAttributeNode>
+<FloatVertexAttribute
+   name="custom_data" numComponents="1" value="...">
+</FloatVertexAttribute>
 ```
 
-The CustomAttributeNode is the entry point in x3dom code for my API.
+The CustomAttributeNode is the entry point in x3dom for the javascript API.
 
 ## JavaScript API
 
@@ -127,16 +128,27 @@ x3dom.registerNodeType(
 );
 ```
 
+To add the plugins in the project add the line :
+```javascript
+require('./threshold.js').new_node(x3dom);
+```
+After loading x3dom
+
+
 ## working with npm
 install the packages with : **npm install**
+
 use browserify with : **npm run build**
+
 use watchify with : **npm run watch**
+
 run server + watchify with : **npm run start**
 
 
+*NOTE*:  Here I worked with npm and use a trick to add x3dom, but with small modifications it should work without it.
 
 
-## Notes
+## Comments
 
 ### x3dom
 I here I used a custom version of x3dom, with the CustomAttributeNode implemented
@@ -144,3 +156,4 @@ I am also working on the top of a branch (pull request #610 ) in x3dom in order 
 
 ### Uniform node
 In the CustomAttributeNode I used the x3dom node Uniform, I will changed it for a custom node.
+
