@@ -1,0 +1,26 @@
+{
+  "name": "clip",
+  "version": "1.0.0",
+  "description": "",
+  "main": "clip",
+  "dependencies": {
+    "gl-matrix-mat3": "^2.2.1-npm",
+    "gl-matrix-mat4": "^2.2.1-npm",
+    "gl-matrix-vec3": "^2.2.1-npm",
+      "gl-matrix-vec4": "^2.2.1-npm",
+      "jbinary":"^2.1.3"
+  },
+    "devDependencies": {
+    "watchify": "^3.6.1",
+    "browserify": "^12.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "python server.py",
+    "watch": "watchify  index.js -o bundle.js -v --debug",
+    "build": "browserify  index.js -o bundle.js -v",
+    "start": "npm run server | npm run watch"
+  },
+  "author": "",
+  "license": "ISC"
+}
