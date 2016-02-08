@@ -1,0 +1,121 @@
+<html>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
+    <title>My first X3DOM page</title>
+    <link rel='stylesheet' type='text/css' href='./lib/x3dom.css'>
+    <style>
+      x3d
+      {
+      border:2px solid darkorange;
+      background: rgba(128, 128, 128, 0.4);
+      }
+    </style>
+
+  </head>
+  <body>
+    <x3d id='x3dElem' showStat='true' width='750px' height='600px' >
+      <scene>
+        <!--
+            The groupe is to link the clip plane to the IndexedFaceSet.
+            Without it, the clipPlan would cut the TriangleSet (the created plan)
+          -->
+        <group>
+          <shape id="shape">
+            <appearance>
+              <Material > </Material>
+              <ImageTexture
+                 url='"./colormap/map-banded.png"'
+                 repeatS='false'
+                 repeatT='false' >
+              </ImageTexture>
+            </Appearance>
+            <!-- All the data (coordIndex, coord, textCoord, normal) are set within index.js -->
+            <IndexedFaceSet
+               id="faceSet" solid="false"  ccw='false'
+               coordIndex='' normalPerVertex='false'>
+              <Coordinate
+                 id="faceSetCoord" point=""></Coordinate>
+              <Normal
+                 id="faceSetNormal" vector="" > </Normal>
+              <Threshold
+                 id="faceSetThreshold" upperBound="" lowerBound=""
+                 dataName="faceSetData" > </Threshold>
+              <ColorMap
+                 id="faceSetColorMap" max="" min=""
+                 dataName="faceSetData" shaderOrder="-1"> </ColorMap>
+              <FloatVertexAttribute
+                 id="faceSetAttr" numComponents="1" value=""
+                 name="faceSetData" > </FloatVertexAttribute>
+              <!-- <CustomAttributeNode -->
+              <!--    vertexShaderPartMain="blabla = faceSetData;" -->
+              <!--    fragmentShaderPartMain="if (v_data > u_max) {discard;};" -->
+              <!--    > -->
+              <!--   <Uniform id="uni" -->
+              <!--      name="u_ma" value="0" type="float"></Uniform> -->
+              <!--   <Varying -->
+              <!--      name="v_data" type="float"></Varying> -->
+              <!-- </CustomAttributeNode> -->
+              <!-- <CustomAttributeNode -->
+              <!--    vertexShaderPartMain="fragTexcoord = vec2((( faceSetData - colormap_min ) / ( colormap_max - colormap_min )), 0.0);"; -->
+              <!--    > -->
+              <!--   <Uniform -->
+              <!--      name="colormap_min" value="-0.00000002" type="float"></Uniform> -->
+              <!--   <Uniform id="uni" -->
+              <!--      name="colormap_max" value="0.0000002" type="float"></Uniform> -->
+              <!-- </CustomAttributeNode> -->
+            </IndexedFaceSet>
+          </shape>
+          <ClipPlane
+             id="clipPlan" cappingStrength='0.0' on='false'
+             plane='0 1 0 0'></ClipPlane>
+        </group>
+        <!-- Switch is used to hide or unhide the clip plan -->
+        <Switch whichChoice="0" id="switcher">
+          <shape>
+            <appearance>
+              <ImageTexture
+                 url='"./colormap/map-banded.png"'
+                 repeatS='false'
+                 repeatT='false' > </ImageTexture>
+            </appearance>
+            <TriangleSet
+               id='triset' solid='false' colorPerVertex='true'>
+              <Coordinate
+                 id='triSetCoordinate' point=" " > </Coordinate>
+              <ColorMap
+                 id="triSetColorMap" dataName="triSetData" max="" min=""></ColorMap>
+              <Threshold
+                 id="triSetThreshold" upperBound="" lowerBound=""
+                 dataName="triSetData" > </Threshold>
+              <FloatVertexAttribute
+                 id="triSetAttr" name="triSetData" numComponents="1" value=""> </FloatVertexAttribute>
+            </TriangleSet>
+          </shape>
+        </Switch>
+      </scene>
+    </x3d>
+    <div style="margin-left: 800px">
+      <b>Clip</b><br>
+      <input id="clipSlider" type="range"
+             min="0" max="1" step="0.001" value="0"> </input>
+      <button id="clipOnButton"  type="button">hide clip plan</button>
+      <br>
+      <span id="disp" style="color:#00CC00"> loading...</span> <br>
+      <b>Color map : border1</b><br>
+      <input id="colorMap1" type="range"
+             min="0" max="1" step="0.05" value="0"> </input><br>
+      <b>Color map : boder2</b><br>
+      <input id="colorMap2" type="range"
+             min="0" max="1" step="0.05" value="1"> </input><br>
+      <span id="colorMapText" style="color:#00CC00">  </span> <br>
+      <b>ISO- volume</b><br>
+      <input id="threshold1" type="range"
+             min="0" max="1" step="0.05" value="0"> </input>
+      <input id="threshold2" type="range"
+             min="0" max="1" step="0.05" value="1"> </input>
+    </div>
+    <script type="text/javascript" charset="utf-8" src='./bundle.js'></script>
+  </body>
+</html>
+<FloatVertexAttribute
+                 id="triSetAttr" name="triSetData" numComponents="1" value=""> </FloatVertexAttribute>
