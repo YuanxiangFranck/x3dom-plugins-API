@@ -37,29 +37,35 @@
         <h2>
           <a id="presentation" class="anchor" href="#presentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Presentation</h2>
 
-        <p>In my project I worked to created new nodes in x3dom, for scientific mesh visualisation and analysis.
+        <p>In my project I worked to created new nodes in x3dom, for scientific mesh visualization and analysis.
           I wanted to created some nodes that influence the geometry (color-map, threshold, clip-Plan).</p>
 
         <p>I had two goals in mind:</p>
 
         <ol>
           <li>Create a simple interface for the final users: The final node should works like any other x3dom node</li>
-          <li>Create a API that allow one to create a node in x3dom in an importable script (without touching x3dom source code)</li>
+          <li>Create an API that allow one to create a node in x3dom in an importable script (without touching x3dom source code)</li>
         </ol>
-
-        <p><strong>Example:</strong></p>
-
+        <p><strong>For more detailed and technical explanation read the README on the <a href="https://github.com/YuanxiangFranck/x3dom-plugins-API">GitHub repository</a>.</strong></p>
+        <h2>
+          <a id="example" class="anchor" href="#example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example</h2>
+        <p>The <strong>Threshold</strong> and <strong>ColorMap</strong> nodes are made to allow one to easily change any fields using <strong>setAttribute</strong>.</p>
 
 <div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">TriangleSet</span>&gt;
+  &lt;<span class="pl-ent">Coordinate</span> ...</span> &gt; <span class="pl-e">point</span>=<span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span> &lt;/<span class="pl-ent">Coordinate</span>&gt;
+  &lt;<span class="pl-ent">Normal</span> ...</span> &gt; <span class="pl-e">vector</span>=<span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span> &lt;/<span class="pl-ent">Normal</span>&gt;
   &lt;<span class="pl-ent">Threshold</span>
      <span class="pl-e">upperBound</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">lowerBound</span>=<span class="pl-s"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span> <span class="pl-e">dataName</span>=<span class="pl-s"><span class="pl-pds">"</span>triSetData<span class="pl-pds">"</span></span> &gt; &lt;/<span class="pl-ent">Threshold</span>&gt;
+  &lt;<span class="pl-ent">ColorMap</span>
+     <span class="pl-e">max</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">min</span>=<span class="pl-s"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span> <span class="pl-e">dataName</span>=<span class="pl-s"><span class="pl-pds">"</span>triSetData<span class="pl-pds">"</span></span> &gt; &lt;/<span class="pl-ent">ColorMap</span>&gt;
   &lt;<span class="pl-ent">FloatVertexAttribute</span>
      <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>triSetData<span class="pl-pds">"</span></span> <span class="pl-e">numComponents</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span>&gt; &lt;/<span class="pl-ent">FloatVertexAttribute</span>&gt;
+  &lt;<span class="pl-ent">FloatVertexAttribute</span>
+     <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>other_set_of_data<span class="pl-pds">"</span></span> <span class="pl-e">numComponents</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span>&gt; &lt;/<span class="pl-ent">FloatVertexAttribute</span>&gt;
   ...
 &lt;/<span class="pl-ent">TriangleSet</span>&gt;</pre></div>
 
 
-        <p>This allow one to easily change the bound or change the set of data only using setAttribute.</p>
 
       </section>
       <section>

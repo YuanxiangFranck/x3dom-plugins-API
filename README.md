@@ -7,42 +7,54 @@ I wanted to created some nodes that influence the geometry (color-map, threshold
 
 I had two goals in mind:
 
-1. Create a simple interface for the final users: The final node should works like any other x3dom node
-2. Create a API that allow one to create a node in x3dom in an importable script (without touching x3dom source code)
+1. Create an API that allow one to create a node in x3dom in an importable script (without touching x3dom source code)
+2. Create a simple interface for the final users: The final node should works like any other x3dom node
 
 **Example:**
 ```html
 <TriangleSet>
+  <Coordinate ... > point="..." </Coordinate>
+  <Normal ... > vector="..." </Normal>
   <Threshold
      upperBound="1" lowerBound="0" dataName="triSetData" > </Threshold>
+  <ColorMap
+     max="1" min="0" dataName="triSetData" > </ColorMap>
   <FloatVertexAttribute
      name="triSetData" numComponents="1" value="..."> </FloatVertexAttribute>
+  <FloatVertexAttribute
+     name="other_set_of_data" numComponents="1" value="..."> </FloatVertexAttribute>
   ...
 </TriangleSet>
 ```
-This allow one to easily change the bound or change the set of data only using setAttribute.
+The **Threshold** and **ColorMap** nodes are made to allow one to easily change any fields using **setAttribute**.
 
 
 ## Quick start
 Demo on :
 [**http://yuanxiangfranck.github.io/**](http://yuanxiangfranck.github.io/)
 
-In order to run the example with :
+In order to run the example :
 
-1. clone the repository
+1. clone and move into the repository
 
 2. run : **python server.py**
 
 3. open in browser [**http://localhost:8000/index.html**](http://localhost:8000/index.html)
 
 
-## x3dom API
+## X3Dom API
 
-My solution was to create a new node: CustomAttributeNode.
+In order to create custom nodes that affect the geometry, a idea is to manipulate the shaders.
+
+X3Dom allow the uses of shaders with the ComposedShader node.
+The problem of ComposedShader is it overwrite the shaders written by x3dom. For example, nodes like ClipPlan are disabled with a ComposedShader node in the DOM, image texture should be written in the ComposedShader.
+
+In order to add shaders to the generated shaders without overwritting it I created a new node: CustomAttributeNode.
 This node is a generic node to add uniforms, varying and shader parts into x3dom.
 The data of the geometry are set using the x3dom node : FloatVertexAttribute.
 
-**Example of CustomAttributeNode to create a threshold node.**
+
+###Example of CustomAttributeNode to create a threshold node.###
 ```html
 <CustomAttributeNode
    vertexShaderPartMain="v_data = custom_data;"
@@ -67,9 +79,9 @@ The CustomAttributeNode is the entry point in x3dom for the javascript API.
 The idea of the my API is to create a new node inherited from CustomAttributeNode.
 I wrote some function to make the implementation of the node easier.
 
-**Example :**
+###Example: creation of the threshold node##
 ```javascript
-
+[...]
 x3dom.registerNodeType(
     "Threshold",
     "Custom",
@@ -93,7 +105,7 @@ x3dom.registerNodeType(
             /**
              * Defines the data associated to each vertices
              */
-            this.addField_SFString(ctx, 'dataName', []);
+            this.addField_SFString(ctx, 'dataName', "");
 
         },
         {
@@ -130,35 +142,34 @@ x3dom.registerNodeType(
         }
     )
 );
+[...]
 ```
 
-To add the plugins in the project add the line :
+To add the plugins, after loading x3dom add the following line :
 ```javascript
 require('./threshold.js').new_node(x3dom);
 ```
-After loading x3dom
 
 
 ## Working with npm
-install the packages with : **npm install**
+Here I worked with npm and use a trick to add x3dom, but with small modifications it should work without it.
 
-use browserify with : **npm run build**
+* install the packages: **npm install**
 
-use watchify with : **npm run watch**
+* build the bundle with browserify: **npm run build**
 
-run server + watchify with : **npm run start**
+* use watchify: **npm run watch**
 
-
-*NOTE*:  Here I worked with npm and use a trick to add x3dom, but with small modifications it should work without it.
+* run server + watchify: **npm run start**
 
 
 ## Comments
 
 ### x3dom
-I here I used a custom version of x3dom, with the CustomAttributeNode implemented
+I here I used a custom version of x3dom, with the CustomAttributeNode implemented.
 I am also working on the top of a branch (pull request #610 ) in x3dom in order to use FloatVertexAttribute.
 
-fork on [https://github.com/YuanxiangFranck/x3dom/tree/x3dom_plugins](https://github.com/YuanxiangFranck/x3dom/tree/x3dom_plugins)
+The x3dom fork with CustomAttributeNode is avaiable here: [https://github.com/YuanxiangFranck/x3dom/tree/x3dom_plugins](https://github.com/YuanxiangFranck/x3dom/tree/x3dom_plugins)
 
 ### Uniform node
 In the CustomAttributeNode I used the x3dom node Uniform, I will changed it for a custom node.
