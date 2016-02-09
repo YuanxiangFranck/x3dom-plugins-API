@@ -155,7 +155,7 @@ function initEventListener(){
             var clipPlan = get("clipPlan");
             if (this.value == 0) {
                 clipPlan.setAttribute("on", "false");
-                get("disp").innerHTML = "no clipping";
+                // get("disp").innerHTML = "no clipping";
             }
             else if (CAN_START){
                 // Equation is a*X + b*Y +c*Z + d = 0
@@ -163,12 +163,12 @@ function initEventListener(){
                 clipPlan.setAttribute("on", "true");
                 get("clipPlan").setAttribute("value", newpos);
                 clipPlan.setAttribute("plane", newpos);
-                get("disp").innerHTML = "y = "+(-1*pos);
+                // get("disp").innerHTML = "y = "+(-1*pos);
                 createClipping(pos);
             }
-            else {
-                get("disp").innerHTML = "data not loaded";
-            }
+            // else {
+            //     get("disp").innerHTML = "data not loaded";
+            // }
         }, false );
 
     // Slider to change the color map
@@ -254,7 +254,7 @@ Promise.all([loadPositionsPromise, loadIndexPromise, loadTriIndexPromise,
         // Initialise the event lisner on the sliders
         initEventListener();
         // Set slider description
-        get("disp").innerHTML = "no clipping";
+        // get("disp").innerHTML = "no clipping";
     });
 
 function get(name){ return document.getElementById(name); }
@@ -57228,8 +57228,6 @@ x3dom.versionInfo = {
  */
 /* eslint-disable no-proto */
 
-'use strict'
-
 var base64 = require('base64-js')
 var ieee754 = require('ieee754')
 var isArray = require('isarray')
@@ -57312,10 +57310,8 @@ function Buffer (arg) {
     return new Buffer(arg)
   }
 
-  if (!Buffer.TYPED_ARRAY_SUPPORT) {
-    this.length = 0
-    this.parent = undefined
-  }
+  this.length = 0
+  this.parent = undefined
 
   // Common case.
   if (typeof arg === 'number') {
@@ -57446,10 +57442,6 @@ function fromJsonObject (that, object) {
 if (Buffer.TYPED_ARRAY_SUPPORT) {
   Buffer.prototype.__proto__ = Uint8Array.prototype
   Buffer.__proto__ = Uint8Array
-} else {
-  // pre-set for values that may exist in the future
-  Buffer.prototype.length = undefined
-  Buffer.prototype.parent = undefined
 }
 
 function allocate (that, length) {
@@ -57599,6 +57591,10 @@ function byteLength (string, encoding) {
   }
 }
 Buffer.byteLength = byteLength
+
+// pre-set for values that may exist in the future
+Buffer.prototype.length = undefined
+Buffer.prototype.parent = undefined
 
 function slowToString (encoding, start, end) {
   var loweredCase = false
@@ -58983,10 +58979,8 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 }
 
 },{}],14:[function(require,module,exports){
-var toString = {}.toString;
-
 module.exports = Array.isArray || function (arr) {
-  return toString.call(arr) == '[object Array]';
+  return Object.prototype.toString.call(arr) == '[object Array]';
 };
 
 },{}],15:[function(require,module,exports){
