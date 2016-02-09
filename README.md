@@ -24,8 +24,10 @@ This allow one to easily change the bound or change the set of data only using s
 
 
 ## Quick start
+Demo on :
+[**http://yuanxiangfranck.github.io/**](http://yuanxiangfranck.github.io/)
 
-In order to try the example :
+In order to build the example :
 
 1. clone the repository
 
@@ -153,6 +155,8 @@ run server + watchify with : **npm run start**
 ### x3dom
 I here I used a custom version of x3dom, with the CustomAttributeNode implemented
 I am also working on the top of a branch (pull request #610 ) in x3dom in order to use FloatVertexAttribute.
+
+fork on [https://github.com/YuanxiangFranck/x3dom](https://github.com/YuanxiangFranck/x3dom)
 
 ### Uniform node
 In the CustomAttributeNode I used the x3dom node Uniform, I will changed it for a custom node.
