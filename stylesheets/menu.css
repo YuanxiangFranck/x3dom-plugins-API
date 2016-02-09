@@ -3,7 +3,7 @@
 margin-bottom: 20px;
 margin-top: 20px;
 width: 100%;
-height: 170px;
+height: 180px;
 }
 
 .element_menu
@@ -13,8 +13,8 @@ color: rgb(147,148,150);
 font-family: "Georgia", serif, Comic Sans MS, Trebuchet MS;
 text-align: center;
 border: hidden;
-margin-right: 70px;
-margin-left: 70px;
+margin-right: 30px;
+margin-left: 30px;
 font-weight: bold;
 }
 .element_menu_left

@@ -1,7 +1,7 @@
 # X3DOM Plugins
 
 ## Presentation
-In my project I worked to created new nodes in x3dom, for scientific mesh visualisation and analysis.
+In my project I worked to created new nodes in [x3dom](https://github.com/x3dom/x3dom.git), for scientific mesh visualisation and analysis.
 I wanted to created some nodes that influence the geometry (color-map, threshold, clip-Plan).
 
 
@@ -27,7 +27,7 @@ This allow one to easily change the bound or change the set of data only using s
 Demo on :
 [**http://yuanxiangfranck.github.io/**](http://yuanxiangfranck.github.io/)
 
-In order to build the example :
+In order to run the example with :
 
 1. clone the repository
 
@@ -59,6 +59,8 @@ The data of the geometry are set using the x3dom node : FloatVertexAttribute.
 ```
 
 The CustomAttributeNode is the entry point in x3dom for the javascript API.
+
+
 
 ## JavaScript API
 
@@ -137,7 +139,7 @@ require('./threshold.js').new_node(x3dom);
 After loading x3dom
 
 
-## working with npm
+## Working with npm
 install the packages with : **npm install**
 
 use browserify with : **npm run build**
@@ -156,8 +158,14 @@ run server + watchify with : **npm run start**
 I here I used a custom version of x3dom, with the CustomAttributeNode implemented
 I am also working on the top of a branch (pull request #610 ) in x3dom in order to use FloatVertexAttribute.
 
-fork on [https://github.com/YuanxiangFranck/x3dom](https://github.com/YuanxiangFranck/x3dom)
+fork on [https://github.com/YuanxiangFranck/x3dom/tree/x3dom_plugins](https://github.com/YuanxiangFranck/x3dom/tree/x3dom_plugins)
 
 ### Uniform node
 In the CustomAttributeNode I used the x3dom node Uniform, I will changed it for a custom node.
+
+
+## Authors and Contributors
+This project was a prototype created by [YuanxiangFranck](https://github.com/YuanxiangFranck/) intern at  [Logilab](https://www.logilab.fr/) for [Open Dream Kit](http://opendreamkit.org/)
+
+![](./other/logilab.png)
 
