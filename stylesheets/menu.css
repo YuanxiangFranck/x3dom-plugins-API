@@ -1,0 +1,39 @@
+.menu
+{
+margin-bottom: 20px;
+margin-top: 20px;
+width: 100%;
+height: 170px;
+}
+
+.element_menu
+{
+float:left;
+color: rgb(147,148,150);
+font-family: "Georgia", serif, Comic Sans MS, Trebuchet MS;
+text-align: center;
+border: hidden;
+margin-right: 70px;
+margin-left: 70px;
+font-weight: bold;
+}
+.element_menu_left
+{
+float:left;
+color: rgb(147,148,150);
+font-family: "Georgia", serif, Comic Sans MS, Trebuchet MS;
+text-align: center;
+border: hidden;
+margin-right: 70px;
+font-weight: bold;
+}
+.element_menu_right
+{
+float:left;
+color: rgb(147,148,150);
+font-family: "Georgia", serif, Comic Sans MS, Trebuchet MS;
+text-align: center;
+border: hidden;
+margin-left: 70px;
+font-weight: bold;
+}

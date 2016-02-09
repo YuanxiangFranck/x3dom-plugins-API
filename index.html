@@ -1,24 +1,26 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <title>X3dom-plugins-api by YuanxiangFranck</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-    <link rel='stylesheet' type='text/css' href='./lib/x3dom.css'>
+    <title>X3dom-plugins-api example by YuanxiangFranck</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen"></link>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'></link>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen"></link>
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen"></link>
+    <link rel="stylesheet" type="text/css" href="stylesheets/menu.css" media="screen"></link>
+    <link rel='stylesheet' type='text/css' href='./lib/x3dom.css'></link>
     <style>
       x3d
       {
-      border:2px solid blue;
-      background: rgba(128, 128, 128, 0.4);
+      background: rgba(0, 128, 100, 0.4);
+      display: inline-block;
+      float: none;
       }
     </style>
-
   </head>
   <body>
     <section class="page-header">
-      <h1 class="project-name">X3dom-plugins-api</h1>
+      <h1 class="project-name">X3dom-plugins-api Example</h1>
       <h2 class="project-tagline">Add a plugins API for X3DOM: example and explanation</h2>
       <a href="https://github.com/YuanxiangFranck/x3dom-plugins-API" class="btn">View on GitHub</a>
       <a href="https://github.com/YuanxiangFranck/x3dom/tree/x3dom_plugins" class="btn">View x3dom fork on GitHub</a>
@@ -28,132 +30,148 @@
 
 
     <section class="main-content">
-      <h3>
-        <a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Demo for X3DOM Plugins.</h3>
+      <section>
+        <h1>
+          <a id="x3dom-plugins" class="anchor" href="#x3dom-plugins" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>X3DOM Plugins</h1>
 
-      <p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here <a href="https://guides.github.com/features/mastering-markdown/">using GitHub Flavored Markdown</a>, select a template crafted by a designer, and publish. After your page is generated, you can check out the new <code>gh-pages</code> branch locally. If you’re using GitHub Desktop, simply sync your repository and you’ll see the new branch.</p>
+        <h2>
+          <a id="presentation" class="anchor" href="#presentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Presentation</h2>
 
-      <h3>
-        <a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Designer Templates</h3>
+        <p>In my project I worked to created new nodes in x3dom, for scientific mesh visualisation and analysis.
+          I wanted to created some nodes that influence the geometry (color-map, threshold, clip-Plan).</p>
 
-      <p>We’ve crafted some handsome templates for you to use. Go ahead and click 'Continue to layouts' to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved.</p>
+        <p>I had two goals in mind:</p>
 
-      <h3>
-        <a id="creating-pages-manually" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating pages manually</h3>
+        <ol>
+          <li>Create a simple interface for the final users: The final node should works like any other x3dom node</li>
+          <li>Create a API that allow one to create a node in x3dom in an importable script (without touching x3dom source code)</li>
+        </ol>
 
-      <p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+        <p><strong>Example:</strong></p>
 
-      
-      <x3d id='x3dElem' showStat='true' width='750px' height='600px' >
-        <scene>
-          <!--
-              The groupe is to link the clip plane to the IndexedFaceSet.
-              Without it, the clipPlan would cut the TriangleSet (the created plan)
-            -->
-          <group>
-            <shape id="shape">
-              <appearance>
-                <Material > </Material>
-                <ImageTexture
-                   url='"./colormap/map-banded.png"'
-                   repeatS='false'
-                   repeatT='false' >
-                </ImageTexture>
-              </Appearance>
-              <!-- All the data (coordIndex, coord, textCoord, normal) are set within index.js -->
-              <IndexedFaceSet
-                 id="faceSet" solid="false"  ccw='false'
-                 coordIndex='' normalPerVertex='false'>
-                <Coordinate
-                   id="faceSetCoord" point=""></Coordinate>
-                <Normal
-                   id="faceSetNormal" vector="" > </Normal>
-                <Threshold
-                   id="faceSetThreshold" upperBound="" lowerBound=""
-                   dataName="faceSetData" > </Threshold>
-                <ColorMap
-                   id="faceSetColorMap" max="" min=""
-                   dataName="faceSetData" shaderOrder="-1"> </ColorMap>
-                <FloatVertexAttribute
-                   id="faceSetAttr" numComponents="1" value=""
-                   name="faceSetData" > </FloatVertexAttribute>
-                <!-- <CustomAttributeNode -->
-                <!--    vertexShaderPartMain="blabla = faceSetData;" -->
-                <!--    fragmentShaderPartMain="if (v_data > u_max) {discard;};" -->
-                <!--    > -->
-                <!--   <Uniform id="uni" -->
-                <!--      name="u_ma" value="0" type="float"></Uniform> -->
-                <!--   <Varying -->
-                <!--      name="v_data" type="float"></Varying> -->
-                <!-- </CustomAttributeNode> -->
-              </IndexedFaceSet>
-            </shape>
-            <ClipPlane
-               id="clipPlan" cappingStrength='0.0' on='false'
-               plane='0 1 0 0'></ClipPlane>
-          </group>
-          <!-- Switch is used to hide or unhide the clip plan -->
-          <Switch whichChoice="0" id="switcher">
-            <shape>
-              <appearance>
-                <ImageTexture
-                   url='"./colormap/map-banded.png"'
-                   repeatS='false'
-                   repeatT='false' > </ImageTexture>
-              </appearance>
-              <TriangleSet
-                 id='triset' solid='false' colorPerVertex='true'>
-                <Coordinate
-                   id='triSetCoordinate' point=" " > </Coordinate>
-                <ColorMap
-                   id="triSetColorMap" dataName="triSetData" max="" min=""></ColorMap>
-                <Threshold
-                   id="triSetThreshold" upperBound="" lowerBound=""
-                   dataName="triSetData" > </Threshold>
-                <FloatVertexAttribute
-                   id="triSetAttr" name="triSetData" numComponents="1" value=""> </FloatVertexAttribute>
-              </TriangleSet>
-            </shape>
-          </Switch>
-        </scene>
-      </x3d>
-      
-      <h3>
-        <a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h3>
 
-      <p>You can <a href="https://help.github.com/articles/basic-writing-and-formatting-syntax/#mentioning-users-and-teams" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor’s GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">TriangleSet</span>&gt;
+  &lt;<span class="pl-ent">Threshold</span>
+     <span class="pl-e">upperBound</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">lowerBound</span>=<span class="pl-s"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span> <span class="pl-e">dataName</span>=<span class="pl-s"><span class="pl-pds">"</span>triSetData<span class="pl-pds">"</span></span> &gt; &lt;/<span class="pl-ent">Threshold</span>&gt;
+  &lt;<span class="pl-ent">FloatVertexAttribute</span>
+     <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>triSetData<span class="pl-pds">"</span></span> <span class="pl-e">numComponents</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span>&gt; &lt;/<span class="pl-ent">FloatVertexAttribute</span>&gt;
+  ...
+&lt;/<span class="pl-ent">TriangleSet</span>&gt;</pre></div>
 
-      <h3>
-        <a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support or Contact</h3>
 
-      <p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
+        <p>This allow one to easily change the bound or change the set of data only using setAttribute.</p>
 
-      <div style="margin-left: 800px">
-        <b>Clip Plane :</b><br>
-        <input id="clipSlider" type="range"
-               min="0" max="1" step="0.001" value="0"> </input><br>
-        <button id="clipOnButton"  type="button">hide clip plan</button>
-        <br>
-        <span id="disp" style="color:#00CC00"> loading...</span> <br>
-        <b>Color map : ><br>
-          <input id="colorMap1" type="range"
-                 min="0" max="1" step="0.05" value="0"> </input><br>
-          <input id="colorMap2" type="range"
-                 min="0" max="1" step="0.05" value="1"> </input><br>
-          <span id="colorMapText" style="color:#00CC00">  </span> <br>
-          <b>Threshold :</b><br>
-          <input id="threshold1" type="range"
-                 min="0" max="1" step="0.05" value="0"> </input><br>
-          <input id="threshold2" type="range"
-                 min="0" max="1" step="0.05" value="1"> </input>
-      </div>
-      <script type="text/javascript" charset="utf-8" src='./bundle.js'></script>
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/YuanxiangFranck/x3dom-plugins-API">X3dom-plugins-api</a> is maintained by <a href="https://github.com/YuanxiangFranck">YuanxiangFranck</a>.</span>
+      </section>
+      <section>
+        <x3d id='x3dElem' showStat='true' width='800px' height='600px' >
+          <scene>
+            <!--
+                The groupe is to link the clip plane to the IndexedFaceSet.
+                Without it, the clipPlan would cut the TriangleSet (the created plan)
+              -->
+            <group>
+              <shape id="shape">
+                <Appearance>
+                  <Material > </Material>
+                  <ImageTexture
+                     url='"./colormap/map-banded.png"'
+                     repeatS='false'
+                     repeatT='false' >
+                  </ImageTexture>
+                </Appearance>
+                <!-- All the data (coordIndex, coord, textCoord, normal) are set within index.js -->
+                <IndexedFaceSet
+                   id="faceSet" solid="false"  ccw='false'
+                   coordIndex='' normalPerVertex='false'>
+                  <Coordinate
+                     id="faceSetCoord" point=""></Coordinate>
+                  <Normal
+                     id="faceSetNormal" vector="" > </Normal>
+                  <Threshold
+                     id="faceSetThreshold" upperBound="" lowerBound=""
+                     dataName="faceSetData" > </Threshold>
+                  <ColorMap
+                     id="faceSetColorMap" max="" min=""
+                     dataName="faceSetData" shaderOrder="-1"> </ColorMap>
+                  <FloatVertexAttribute
+                     id="faceSetAttr" numComponents="1" value=""
+                     name="faceSetData" > </FloatVertexAttribute>
+                </IndexedFaceSet>
+              </shape>
+              <ClipPlane
+                 id="clipPlan" cappingStrength='0.0' on='false'
+                 plane='0 1 0 0'></ClipPlane>
+            </group>
+            <!-- Switch is used to hide or unhide the clip plan -->
+            <Switch whichChoice="0" id="switcher">
+              <shape>
+                <appearance>
+                  <ImageTexture
+                     url='"./colormap/map-banded.png"'
+                     repeatS='false'
+                     repeatT='false' > </ImageTexture>
+                </appearance>
+                <TriangleSet
+                   id='triset' solid='false' colorPerVertex='true'>
+                  <Coordinate
+                     id='triSetCoordinate' point=" " > </Coordinate>
+                  <ColorMap
+                     id="triSetColorMap" dataName="triSetData" max="" min=""></ColorMap>
+                  <Threshold
+                     id="triSetThreshold" upperBound="" lowerBound=""
+                     dataName="triSetData" > </Threshold>
+                  <FloatVertexAttribute
+                     id="triSetAttr" name="triSetData" numComponents="1" value=""> </FloatVertexAttribute>
+                </TriangleSet>
+              </shape>
+            </Switch>
+          </scene>
+        </x3d>
+        <script type="text/javascript" charset="utf-8" src='./bundle.js'></script>
+        <div class="menu">
+          <div class="element_menu">
+            <p> <label for="clipSlider">Clip Plane:</label></p>
+            <p> <input id="clipSlider" type="range"
+                       min="0" max="1" step="0.001" value="0"></input></p>
+            <p> <button id="clipOnButton"  type="button">hide clip plane</button></p>
+            <!-- <p>  <span id="disp" style="color:#00CC00"> loading...</span></p> -->
+          </div>
+          <div class="element_menu">
+            <p><label for="colorMap1">Color map:</label></p>
+            <p><input id="colorMap1" type="range"
+                      min="0" max="1" step="0.01" value="0"> </input></p>
+            <p><input id="colorMap2" type="range"
+                      min="0" max="1" step="0.01" value="1"> </input></p>
+            <p><span id="colorMapText" style="color:#00CC00">  </span></p>
+          </div>
+          <div class="element_menu">
+            <b>Threshold:</b>
+            <p> <input id="threshold1" type="range"
+                       min="0" max="1" step="0.01" value="0"> </input></p>
+            <p> <input id="threshold2" type="range"
+                       min="0" max="1" step="0.01" value="1"> </input></p>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h3>
+          <a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h3>
 
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
+        <p>You can <a href="https://help.github.com/articles/basic-writing-and-formatting-syntax/#mentioning-users-and-teams" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor’s GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
 
+        <h3>
+          <a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support or Contact</h3>
+
+        <p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
+
+
+        <footer class="site-footer">
+          <span class="site-footer-owner"><a href="https://github.com/YuanxiangFranck/x3dom-plugins-API">X3dom-plugins-api</a> is maintained by <a href="https://github.com/YuanxiangFranck">YuanxiangFranck</a>, for <a href="http://www.logilab.fr">Logilab</a></span>
+
+          <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+        </footer>
+
+      </section>
     </section>
   </body>
 </html>
