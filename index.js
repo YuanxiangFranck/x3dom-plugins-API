@@ -47,7 +47,7 @@ function initEventListener(){
             var clipPlan = get("clipPlan");
             if (this.value == 0) {
                 clipPlan.setAttribute("on", "false");
-                get("disp").innerHTML = "no clipping";
+                // get("disp").innerHTML = "no clipping";
             }
             else if (CAN_START){
                 // Equation is a*X + b*Y +c*Z + d = 0
@@ -55,12 +55,12 @@ function initEventListener(){
                 clipPlan.setAttribute("on", "true");
                 get("clipPlan").setAttribute("value", newpos);
                 clipPlan.setAttribute("plane", newpos);
-                get("disp").innerHTML = "y = "+(-1*pos);
+                // get("disp").innerHTML = "y = "+(-1*pos);
                 createClipping(pos);
             }
-            else {
-                get("disp").innerHTML = "data not loaded";
-            }
+            // else {
+            //     get("disp").innerHTML = "data not loaded";
+            // }
         }, false );
 
     // Slider to change the color map
@@ -146,7 +146,7 @@ Promise.all([loadPositionsPromise, loadIndexPromise, loadTriIndexPromise,
         // Initialise the event lisner on the sliders
         initEventListener();
         // Set slider description
-        get("disp").innerHTML = "no clipping";
+        // get("disp").innerHTML = "no clipping";
     });
 
 function get(name){ return document.getElementById(name); }
