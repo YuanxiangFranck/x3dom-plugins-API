@@ -28,33 +28,33 @@ var POS_MAX = 0;
  * Set the event listener on the element in the dom
  */
 function initEventListener(){
-    // Button to hide or unhide the clipping plan
+    // Button to hide or unhide the clipping plane
     get("clipOnButton").addEventListener(
         'click',
         function(event){
-            var clipPlan = get("clipPlan");
-            if (clipPlan.getAttribute("on")==="false") return;
+            var clipPlane = get("clipPlane");
+            if (clipPlane.getAttribute("on")==="false") return;
             var switcher = get("switcher");
             var on = switcher.getAttribute("whichChoice") === "0"? "-1" : "0";
             switcher.setAttribute("whichChoice", on);
         }, false );
 
-    // Slider to move the clipping plan in y axis
+    // Slider to move the clipping plane in y axis
     get("clipSlider").addEventListener(
         'change',
         function(event){
             var pos = -1*(POS_MIN + this.value*(POS_MAX-POS_MIN));
-            var clipPlan = get("clipPlan");
+            var clipPlane = get("clipPlane");
             if (this.value == 0) {
-                clipPlan.setAttribute("on", "false");
+                clipPlane.setAttribute("on", "false");
                 // get("disp").innerHTML = "no clipping";
             }
             else if (CAN_START){
                 // Equation is a*X + b*Y +c*Z + d = 0
                 var newpos = '0, 1, 0, ' + pos;
-                clipPlan.setAttribute("on", "true");
-                get("clipPlan").setAttribute("value", newpos);
-                clipPlan.setAttribute("plane", newpos);
+                clipPlane.setAttribute("on", "true");
+                get("clipPlane").setAttribute("value", newpos);
+                clipPlane.setAttribute("plane", newpos);
                 // get("disp").innerHTML = "y = "+(-1*pos);
                 createClipping(pos);
             }
@@ -93,7 +93,7 @@ function updateThreshold() {
 }
 
 /**
- * Compute the new clip plan from the new position (pos)
+ * Compute the new clip plane from the new position (pos)
  * Update the Triangle Set for rendering
  */
 function createClipping(pos){

@@ -37,8 +37,8 @@
         <h2>
           <a id="presentation" class="anchor" href="#presentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Presentation</h2>
 
-        <p>In my project I worked to created new nodes in x3dom, for scientific mesh visualization and analysis.
-          I wanted to created some nodes that influence the geometry (color-map, threshold, clip-Plan).</p>
+        <p>In my project I worked to create new nodes in x3dom, for scientific mesh visualization and analysis.
+          I wanted to created some nodes that influence the geometry (color-map, threshold, clip-Plane).</p>
 
         <p>I had two goals in mind:</p>
 
@@ -52,8 +52,8 @@
         <p>The <strong>Threshold</strong> and <strong>ColorMap</strong> nodes are made to allow one to easily change any fields using <strong>setAttribute</strong>.</p>
 
 <div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">TriangleSet</span>&gt;
-  &lt;<span class="pl-ent">Coordinate</span> ...</span> &gt; <span class="pl-e">point</span>=<span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span> &lt;/<span class="pl-ent">Coordinate</span>&gt;
-  &lt;<span class="pl-ent">Normal</span> ...</span> &gt; <span class="pl-e">vector</span>=<span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span> &lt;/<span class="pl-ent">Normal</span>&gt;
+  &lt;<span class="pl-ent">Coordinate</span>&gt; <span class="pl-e">point</span>=<span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span> </span> &lt;/<span class="pl-ent">Coordinate</span>&gt;
+  &lt;<span class="pl-ent">Normal</span>&gt; <span class="pl-e">vector</span>=<span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span> </span> &lt;/<span class="pl-ent">Normal</span>&gt;
   &lt;<span class="pl-ent">Threshold</span>
      <span class="pl-e">upperBound</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">lowerBound</span>=<span class="pl-s"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span> <span class="pl-e">dataName</span>=<span class="pl-s"><span class="pl-pds">"</span>triSetData<span class="pl-pds">"</span></span> &gt; &lt;/<span class="pl-ent">Threshold</span>&gt;
   &lt;<span class="pl-ent">ColorMap</span>
@@ -73,7 +73,7 @@
           <scene>
             <!--
                 The groupe is to link the clip plane to the IndexedFaceSet.
-                Without it, the clipPlan would cut the TriangleSet (the created plan)
+                Without it, the clipPlane would cut the TriangleSet (the created plane)
               -->
             <group>
               <shape id="shape">
@@ -105,10 +105,10 @@
                 </IndexedFaceSet>
               </shape>
               <ClipPlane
-                 id="clipPlan" cappingStrength='0.0' on='false'
+                 id="clipPlane" cappingStrength='0.0' on='false'
                  plane='0 1 0 0'></ClipPlane>
             </group>
-            <!-- Switch is used to hide or unhide the clip plan -->
+            <!-- Switch is used to hide or unhide the clip plane -->
             <Switch whichChoice="0" id="switcher">
               <shape>
                 <appearance>
@@ -163,7 +163,7 @@
         <h3>
           <a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h3>
 
-        <p>This project was a prototype created by <a href="https://github.com/YuanxiangFranck/" class="user-mention">@YuanxiangFranck</a>, intern at <a href="https://www.logilab.fr/">Logilab</a>. This work is a part of the  <a href="http://opendreamkit.org/">Open Dream Kit</a> project</p>
+        <p>This project was a prototype created by <a href="https://github.com/YuanxiangFranck/" class="user-mention">@YuanxiangFranck</a>, intern at <a href="https://www.logilab.fr/">Logilab</a>. This work is a part of the  <a href="http://opendreamkit.org/">Open Dream Kit</a> project.</p>
         <figure>
           <img src="./other/logilab.png" alt="" />
         </figure>
