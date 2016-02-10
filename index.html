@@ -14,6 +14,7 @@
       <h1 class="project-name">X3dom-plugins-api</h1>
       <h2 class="project-tagline">Add a plugins API for X3DOM: example and explanation</h2>
       <a href="https://github.com/YuanxiangFranck/x3dom-plugins-API" class="btn">View on GitHub</a>
+      <a href="https://github.com/YuanxiangFranck/x3dom/tree/x3dom_plugins" class="btn">View x3dom fork on GitHub</a>
       <a href="https://github.com/YuanxiangFranck/x3dom-plugins-API/zipball/master" class="btn">Download .zip</a>
       <a href="https://github.com/YuanxiangFranck/x3dom-plugins-API/tarball/master" class="btn">Download .tar.gz</a>
     </section>
@@ -61,7 +62,95 @@ markup looks like:</p>
 they react to any attribute change using DOM's node <strong>setAttribute</strong>
 method. This makes it easy to use HTML widgets like sliders / buttons
 to drive the plugin's parameters.</p>
-
+        <x3d id='x3dElem' width='800px' height='600px' >
+          <scene>
+            <!--
+                The groupe is to link the clip plane to the IndexedFaceSet.
+                Without it, the clipPlane would cut the TriangleSet (the created plane)
+              -->
+            <group>
+              <shape id="shape">
+                <Appearance>
+                  <Material > </Material>
+                  <ImageTexture
+                     url='"./colormap/map-banded.png"'
+                     repeatS='false'
+                     repeatT='false' >
+                  </ImageTexture>
+                </Appearance>
+                <!-- All the data (coordIndex, coord, textCoord, normal) are set within index.js -->
+                <IndexedFaceSet
+                   id="faceSet" solid="false"  ccw='false'
+                   coordIndex='' normalPerVertex='false'>
+                  <Coordinate
+                     id="faceSetCoord" point=""></Coordinate>
+                  <Normal
+                     id="faceSetNormal" vector="" > </Normal>
+                  <Threshold
+                     id="faceSetThreshold" upperBound="" lowerBound=""
+                     dataName="faceSetData" > </Threshold>
+                  <IsoColor
+                     id="faceSetIsoColor" max="" min=""
+                     dataName="faceSetData" shaderOrder="-1"> </IsoColor>
+                  <FloatVertexAttribute
+                     id="faceSetAttr" numComponents="1" value=""
+                     name="faceSetData" > </FloatVertexAttribute>
+                </IndexedFaceSet>
+              </shape>
+              <ClipPlane
+                 id="clipPlane" cappingStrength='0.0'
+                 plane='0 1 0 0'></ClipPlane>
+            </group>
+            <!-- Switch is used to hide or unhide the clip plane -->
+            <Switch whichChoice="0" id="switcher">
+              <shape>
+                <appearance>
+                  <ImageTexture
+                     url='"./colormap/map-banded.png"'
+                     repeatS='false'
+                     repeatT='false' > </ImageTexture>
+                </appearance>
+                <TriangleSet
+                   id='triset' solid='false' colorPerVertex='true'>
+                  <Coordinate
+                     id='triSetCoordinate' point=" " > </Coordinate>
+                  <IsoColor
+                     id="triSetIsoColor" dataName="triSetData" max="" min=""></IsoColor>
+                  <Threshold
+                     id="triSetThreshold" upperBound="" lowerBound=""
+                     dataName="triSetData" > </Threshold>
+                  <FloatVertexAttribute
+                     id="triSetAttr" name="triSetData" numComponents="1" value=""> </FloatVertexAttribute>
+                </TriangleSet>
+              </shape>
+            </Switch>
+          </scene>
+        </x3d>
+        <script type="text/javascript" charset="utf-8" src='./bundle.js'></script>
+        <div class="menu">
+          <div class="element_menu">
+            <p> <label for="clipSlider">Clip Plane:</label></p>
+            <p> <input id="clipSlider" type="range"
+                       min="0" max="1" step="0.001" value="0"></input></p>
+            <p> <button id="clipOnButton"  type="button">hide clip plane</button></p>
+            <!-- <p>  <span id="disp" style="color:#00CC00"> loading...</span></p> -->
+          </div>
+          <div class="element_menu">
+            <p><label for="isoColor1">Color map:</label></p>
+            <p><input id="isoColor1" type="range"
+                      min="0" max="1" step="0.01" value="0"> </input></p>
+            <p><input id="isoColor2" type="range"
+                      min="0" max="1" step="0.01" value="1"> </input></p>
+          </div>
+          <div class="element_menu">
+            <b>Threshold:</b>
+            <p> <input id="threshold1" type="range"
+                       min="0" max="1" step="0.01" value="0"> </input></p>
+            <p> <input id="threshold2" type="range"
+                       min="0" max="1" step="0.01" value="1"> </input></p>
+          </div>
+        </div>
+      </section>
 <h2>
 <a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h2>
 
