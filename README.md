@@ -44,7 +44,7 @@ to drive the plugin's parameters.
 ## Quick start
 
 Example and live demonstration on:
-[**http://yuanxiangfranck.github.io/**](http://yuanxiangfranck.github.io/)
+[**http://yuanxiangfranck.github.io/**](http://yuanxiangfranck.github.io/x3dom-plugins-API/)
 
 In order to run the example :
 
