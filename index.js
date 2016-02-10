@@ -74,9 +74,9 @@ function initEventListener(){
  * Update the map color with the new border values
  */
 function updateIsoColor() {
-    var sliderValues = utils.getSliderMinMax("isocolor", DATA_REAL_MIN, DATA_REAL_MAX);
-    get("faceSetIsoColorMap").setAttribute("min", sliderValues.min);
-    get("faceSetIsoColorMap").setAttribute("max", sliderValues.max);
+    var sliderValues = utils.getSliderMinMax("isoColor", DATA_REAL_MIN, DATA_REAL_MAX);
+    get("faceSetIsoColor").setAttribute("min", sliderValues.min);
+    get("faceSetIsoColor").setAttribute("max", sliderValues.max);
     get("triSetIsoColorMap").setAttribute("min", sliderValues.min);
     get("triSetIsoColorMap").setAttribute("max", sliderValues.max);
 }
