@@ -6,7 +6,7 @@ var utils       = require('./lib/utils');
 x3dom = require('./lib/x3dom.debug.js').initX3dom();
 x3domUtils.getx3dom(x3dom);
 require('./threshold.js').new_node(x3dom);
-require('./color-map.js').new_node(x3dom);
+require('./isoColor.js').new_node(x3dom);
 
 var datadir = "./binGeo/piston/";
 // Jbinary read and load the binary files and return the arraybuffer with a promise
