@@ -63,9 +63,9 @@ function initEventListener(){
             // }
         }, false );
 
-    // Slider to change the color map
-    get("colorMap1" ).addEventListener('change', updateColorMap);
-    get("colorMap2" ).addEventListener('change', updateColorMap);
+    // Slider to change the iso color
+    get("isoColor1" ).addEventListener('change', updateIsoColor);
+    get("isoColor2" ).addEventListener('change', updateIsoColor);
     get("threshold1").addEventListener('change', updateThreshold);
     get("threshold2").addEventListener('change', updateThreshold);
 }
@@ -73,12 +73,12 @@ function initEventListener(){
 /**
  * Update the map color with the new border values
  */
-function updateColorMap() {
-    var sliderValues = utils.getSliderMinMax("colorMap", DATA_REAL_MIN, DATA_REAL_MAX);
-    get("faceSetColorMap").setAttribute("min", sliderValues.min);
-    get("faceSetColorMap").setAttribute("max", sliderValues.max);
-    get("triSetColorMap").setAttribute("min", sliderValues.min);
-    get("triSetColorMap").setAttribute("max", sliderValues.max);
+function updateIsoColor() {
+    var sliderValues = utils.getSliderMinMax("isocolor", DATA_REAL_MIN, DATA_REAL_MAX);
+    get("faceSetIsoColorMap").setAttribute("min", sliderValues.min);
+    get("faceSetIsoColorMap").setAttribute("max", sliderValues.max);
+    get("triSetIsoColorMap").setAttribute("min", sliderValues.min);
+    get("triSetIsoColorMap").setAttribute("max", sliderValues.max);
 }
 
 /**
@@ -105,9 +105,9 @@ function createClipping(pos){
     if (triCoord.length !== 0) {
         x3domUtils.updateCoordPoint(get("triSetCoordinate"), triCoord);
         x3domUtils.updateDataValue(get("triSetAttr"), trisetData);
-        sliderValues = utils.getSliderMinMax("colorMap", DATA_REAL_MIN, DATA_REAL_MAX);
-        get("triSetColorMap").setAttribute("min", sliderValues.min);
-        get("triSetColorMap").setAttribute("max", sliderValues.max);
+        sliderValues = utils.getSliderMinMax("IsoColor", DATA_REAL_MIN, DATA_REAL_MAX);
+        get("triSetIsoColor").setAttribute("min", sliderValues.min);
+        get("triSetIsoColor").setAttribute("max", sliderValues.max);
         sliderValues = utils.getSliderMinMax("threshold", DATA_REAL_MIN, DATA_REAL_MAX);
         get("triSetThreshold").setAttribute("lowerBound", sliderValues.min);
         get("triSetThreshold").setAttribute("upperBound", sliderValues.max);
@@ -129,8 +129,8 @@ Promise.all([loadPositionsPromise, loadIndexPromise, loadTriIndexPromise,
         var data = dataArray;
         DATA_REAL_MIN = Math.min.apply(null, data);
         DATA_REAL_MAX = Math.max.apply(null, data);
-        get("faceSetColorMap").setAttribute("min",DATA_REAL_MIN);
-        get("faceSetColorMap").setAttribute("max",DATA_REAL_MAX);
+        get("faceSetIsoColor").setAttribute("min",DATA_REAL_MIN);
+        get("faceSetIsoColor").setAttribute("max",DATA_REAL_MAX);
         get("faceSetThreshold").setAttribute("lowerBound",DATA_REAL_MIN);
         get("faceSetThreshold").setAttribute("upperBound",DATA_REAL_MAX);
         // Initialise the tetra mesh : compute aabb / octree

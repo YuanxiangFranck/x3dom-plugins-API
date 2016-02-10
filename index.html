@@ -113,9 +113,9 @@
                   <Threshold
                      id="faceSetThreshold" upperBound="" lowerBound=""
                      dataName="faceSetData" > </Threshold>
-                  <ColorMap
-                     id="faceSetColorMap" max="" min=""
-                     dataName="faceSetData" shaderOrder="-1"> </ColorMap>
+                  <IsoColor
+                     id="faceSetIsoColor" max="" min=""
+                     dataName="faceSetData" shaderOrder="-1"> </IsoColor>
                   <FloatVertexAttribute
                      id="faceSetAttr" numComponents="1" value=""
                      name="faceSetData" > </FloatVertexAttribute>
@@ -138,8 +138,8 @@
                    id='triset' solid='false' colorPerVertex='true'>
                   <Coordinate
                      id='triSetCoordinate' point=" " > </Coordinate>
-                  <ColorMap
-                     id="triSetColorMap" dataName="triSetData" max="" min=""></ColorMap>
+                  <IsoColor
+                     id="triSetIsoColor" dataName="triSetData" max="" min=""></IsoColor>
                   <Threshold
                      id="triSetThreshold" upperBound="" lowerBound=""
                      dataName="triSetData" > </Threshold>
@@ -160,12 +160,11 @@
             <!-- <p>  <span id="disp" style="color:#00CC00"> loading...</span></p> -->
           </div>
           <div class="element_menu">
-            <p><label for="colorMap1">Color map:</label></p>
-            <p><input id="colorMap1" type="range"
+            <p><label for="isoColor1">Color map:</label></p>
+            <p><input id="isoColor1" type="range"
                       min="0" max="1" step="0.01" value="0"> </input></p>
-            <p><input id="colorMap2" type="range"
+            <p><input id="isoColor2" type="range"
                       min="0" max="1" step="0.01" value="1"> </input></p>
-            <p><span id="colorMapText" style="color:#00CC00">  </span></p>
           </div>
           <div class="element_menu">
             <b>Threshold:</b>

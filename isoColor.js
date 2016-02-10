@@ -2,12 +2,12 @@
 
 function new_node(x3dom){
     x3dom.registerNodeType(
-        "ColorMap",
+        "IsoColor",
         "Custom",
         defineClass(
             x3dom.nodeTypes.CustomAttributeNode,
             /**
-             * Constructor for ColorMap
+             * Constructor for IsoColor
              * @constructs x3dom.nodeTypes.CustomAttributNode
              * @x3d 3.2
              * @component Custom
@@ -19,7 +19,7 @@ function new_node(x3dom){
              * than a given value
              */
             function (ctx) {
-                x3dom.nodeTypes.ColorMap.superClass.call(this, ctx);
+                x3dom.nodeTypes.IsoColor.superClass.call(this, ctx);
                 /**
                  * Defines the upper bound for threashold,
                  * values higher than the upper bound will be hidden
