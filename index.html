@@ -37,27 +37,38 @@
         <h2>
           <a id="presentation" class="anchor" href="#presentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Presentation</h2>
 
-        <p>In my project I worked to create new nodes in x3dom, for scientific mesh visualization and analysis.
-          I wanted to created some nodes that influence the geometry (color-map, threshold, clip-Plane).</p>
+        <p>During my internship, I worked on the creation of
+          x3dom-based tools for mesh data visualization and analysis.
+          I wanted to create new DOM nodes that integrate nicely in a
+          standard x3dom tree, namely iso-color, threshold,
+          clip-plane.</p>
 
         <p>I had two goals in mind:</p>
 
         <ol>
-          <li>Create a simple interface for the final users: The final node should works like any other x3dom node</li>
-          <li>Create an API that allow one to create a node in x3dom in an importable script (without touching x3dom source code)</li>
+          <li>create an x3dom plugin API that allows one to create new
+          DOM nodes which extend x3dom functionality;</li>
+          <li>keep a simple x3dom-like interface for the final
+          users.</li>
         </ol>
-        <p><strong>For more detailed and technical explanation read the README on the <a href="https://github.com/YuanxiangFranck/x3dom-plugins-API">GitHub repository</a>.</strong></p>
+        <p><strong>For a detailed technical explanation take a look at
+        the <a href="https://github.com/YuanxiangFranck/x3dom-plugins-API">GitHub
+        repository</a>.</strong></p>
         <h2>
-          <a id="example" class="anchor" href="#example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example</h2>
-        <p>The <strong>Threshold</strong> and <strong>ColorMap</strong> nodes are made to allow one to easily change any fields using <strong>setAttribute</strong>.</p>
+          <a id="example" class="anchor" href="#example" aria-hidden="true">
+            <span aria-hidden="true" class="octicon octicon-link"></span>
+          </a>
+          Example</h2>
+        <p> Following example illustrates the usage of such plugins.
+          The relevant markup looks like:</p>
 
 <div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">TriangleSet</span>&gt;
   &lt;<span class="pl-ent">Coordinate</span>&gt; <span class="pl-e">point</span>=<span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span> </span> &lt;/<span class="pl-ent">Coordinate</span>&gt;
   &lt;<span class="pl-ent">Normal</span>&gt; <span class="pl-e">vector</span>=<span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span> </span> &lt;/<span class="pl-ent">Normal</span>&gt;
   &lt;<span class="pl-ent">Threshold</span>
      <span class="pl-e">upperBound</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">lowerBound</span>=<span class="pl-s"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span> <span class="pl-e">dataName</span>=<span class="pl-s"><span class="pl-pds">"</span>triSetData<span class="pl-pds">"</span></span> &gt; &lt;/<span class="pl-ent">Threshold</span>&gt;
-  &lt;<span class="pl-ent">ColorMap</span>
-     <span class="pl-e">max</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">min</span>=<span class="pl-s"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span> <span class="pl-e">dataName</span>=<span class="pl-s"><span class="pl-pds">"</span>triSetData<span class="pl-pds">"</span></span> &gt; &lt;/<span class="pl-ent">ColorMap</span>&gt;
+  &lt;<span class="pl-ent">IsoColor</span>
+     <span class="pl-e">max</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">min</span>=<span class="pl-s"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span> <span class="pl-e">dataName</span>=<span class="pl-s"><span class="pl-pds">"</span>triSetData<span class="pl-pds">"</span></span> &gt; &lt;/<span class="pl-ent">IsoColor</span>&gt;
   &lt;<span class="pl-ent">FloatVertexAttribute</span>
      <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>triSetData<span class="pl-pds">"</span></span> <span class="pl-e">numComponents</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span>&gt; &lt;/<span class="pl-ent">FloatVertexAttribute</span>&gt;
   &lt;<span class="pl-ent">FloatVertexAttribute</span>
@@ -65,11 +76,17 @@
   ...
 &lt;/<span class="pl-ent">TriangleSet</span>&gt;</pre></div>
 
+<p> The <strong>Threshold</strong> and <strong>IsoColor</strong> nodes
+        work like any x3dom node: they react to any attribute change
+        using DOM's node <strong>setAttribute</strong> method.  This
+        makes it easy to use HTML widgets like sliders / buttons to
+        drive the plugin's parameters.</p>
+
 
 
       </section>
       <section>
-        <x3d id='x3dElem' showStat='true' width='800px' height='600px' >
+        <x3d id='x3dElem' width='800px' height='600px' >
           <scene>
             <!--
                 The groupe is to link the clip plane to the IndexedFaceSet.
@@ -105,8 +122,8 @@
                 </IndexedFaceSet>
               </shape>
               <ClipPlane
-                 id="clipPlane" cappingStrength='0.0' on='false'
-                 plane='0 1 0 0'></ClipPlane>
+                 id="clipPlane" cappingStrength='0.0'
+                 plane='0 1 0 0.5'></ClipPlane>
             </group>
             <!-- Switch is used to hide or unhide the clip plane -->
             <Switch whichChoice="0" id="switcher">
