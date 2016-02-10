@@ -105,7 +105,7 @@ function createClipping(pos){
     if (triCoord.length !== 0) {
         x3domUtils.updateCoordPoint(get("triSetCoordinate"), triCoord);
         x3domUtils.updateDataValue(get("triSetAttr"), trisetData);
-        sliderValues = utils.getSliderMinMax("IsoColor", DATA_REAL_MIN, DATA_REAL_MAX);
+        sliderValues = utils.getSliderMinMax("isoColor", DATA_REAL_MIN, DATA_REAL_MAX);
         get("triSetIsoColor").setAttribute("min", sliderValues.min);
         get("triSetIsoColor").setAttribute("max", sliderValues.max);
         sliderValues = utils.getSliderMinMax("threshold", DATA_REAL_MIN, DATA_REAL_MAX);
@@ -145,6 +145,7 @@ Promise.all([loadPositionsPromise, loadIndexPromise, loadTriIndexPromise,
                                     "data": data});
         // Initialise the event lisner on the sliders
         initEventListener();
+        createClipping(0);
         // Set slider description
         // get("disp").innerHTML = "no clipping";
     });
