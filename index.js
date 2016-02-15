@@ -35,19 +35,19 @@ function initEventListener(){
             get("transx").value=0;
             get("transy").value=0;
             get("transz").value=0;
-            get("transform").setAttribute("translation", "0 0 0");
+            get("translation").setAttribute("translation", "0 0 0");
         }, false );
 
     get("hideButton").addEventListener(
         'click',
         function(event){
-            var test = get("transform").getAttribute("render");
+            var test = get("groupFaceSet2").getAttribute("render");
             if (test == "true"){
-                get("transform").setAttribute("render", "false");
+                get("groupFaceSet2").setAttribute("render", "false");
                 get("hideButton").innerHTML= "show grey part";
             }
             else {
-                get("transform").setAttribute("render", "true");
+                get("groupFaceSet2").setAttribute("render", "true");
                 get("hideButton").innerHTML= "hide grey part";
             }
         }, false );
@@ -117,7 +117,7 @@ function updateTranslation() {
             get("transx").value+" "+
             get("transy").value+" "+
             get("transz").value;
-    get("transform").setAttribute("translation", translation);
+    get("translation").setAttribute("translation", translation);
 }
 
 /**
@@ -165,6 +165,8 @@ Promise.all([loadPositionsPromise, loadIndexPromise, loadTriIndexPromise,
         DATA_REAL_MAX = Math.max.apply(null, data);
         get("faceSetIsoColor").setAttribute("min",DATA_REAL_MIN);
         get("faceSetIsoColor").setAttribute("max",DATA_REAL_MAX);
+        get("faceSetIsoColor2").setAttribute("min",DATA_REAL_MIN);
+        get("faceSetIsoColor2").setAttribute("max",DATA_REAL_MAX);
         get("faceSetThreshold2").setAttribute("lowerBound",DATA_REAL_MIN);
         get("faceSetThreshold2").setAttribute("upperBound",DATA_REAL_MAX);
         // Initialise the tetra mesh : compute aabb / octree

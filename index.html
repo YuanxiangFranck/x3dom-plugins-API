@@ -88,23 +88,23 @@
       <section>
         <x3d id='x3dElem' width='800px' height='600px' >
           <scene>
-            <!--
-                The groupe is to link the clip plane to the IndexedFaceSet.
-                Without it, the clipPlane would cut the TriangleSet (the created plane)
-              -->
+            <!-- The groupe is to link the clip plane to the
+                IndexedFaceSet.  Without it, the clipPlane would cut
+                the TriangleSet (the created plane) -->
             <group>
               <Transform rotation="1 -0.5 0 1.57" >
                 <Transform rotation="0 0 1 1.57" >
                   <shape id="shape">
-                    <Appearance>
-                      <Material > </Material>
+                    <Appearance id="app1">
+                      <Material id="mat1" > </Material>
                       <ImageTexture
                          url='"./images/map-banded.png"'
                          repeatS='false'
                          repeatT='false' >
                       </ImageTexture>
                     </Appearance>
-                    <!-- All the data (coordIndex, coord, textCoord, normal) are set within index.js -->
+                    <!-- All the data (coordIndex, coord, textCoord,
+                    normal) are set within index.js -->
                     <IndexedFaceSet
                        id="faceSet" solid="false"  ccw='false'
                        coordIndex='' normalPerVertex='false'>
@@ -114,46 +114,45 @@
                          id="faceSetNormal" vector="" > </Normal>
                       <IsoColor
                          id="faceSetIsoColor" max="" min=""
-                         dataName="faceSetData" shaderOrder="-1"> </IsoColor>
+                         dataName="faceSetData"> </IsoColor>
                       <FloatVertexAttribute
                          id="faceSetAttr" numComponents="1" value=""
                          name="faceSetData" > </FloatVertexAttribute>
                     </IndexedFaceSet>
                   </shape>
-                  <ClipPlane
-                     id="clipPlane" cappingStrength='0.0'
-                     plane='0 1 0 0'></ClipPlane>
+                  <ClipPlane id="clipPlane" plane='0 1 0 0'></ClipPlane>
                 </Transform>
               </Transform>
             </group>
-            <group>
+            <group id="groupFaceSet2"render="true" >
               <Transform rotation="1 -0.5 0 1.57" >
                 <Transform rotation="0 0 1 1.57" >
-                  <Transform id="transform" render="true"
-                             translation='0 0 0'>
+                  <Transform id="translation" translation='0 0 0'>
                     <shape>
-                      <Appearance>
-                        <Material > </Material>
+                      <Appearance id="app2">
+                        <ImageTexture
+                           url='"./images/map-banded2.png"'
+                           repeatS='false'
+                           repeatT='false' >
+                        </ImageTexture>
                       </Appearance>
-                      <!-- All the data (coordIndex, coord, textCoord, normal) are set within index.js -->
                       <IndexedFaceSet
                          id="faceSet2" solid="false"  ccw='false'
                          coordIndex='' normalPerVertex='false'>
-                        <Coordinate
-                           id="faceSetCoord2" point=""></Coordinate>
-                        <Normal
-                           id="faceSetNormal2" vector="" > </Normal>
+                        <Coordinate use="faceSetCoord"></Coordinate>
+                        <Normal use="faceSetNormal"> </Normal>
+                      <IsoColor
+                         id="faceSetIsoColor2" max="" min=""
+                         dataName="faceSetData2"> </IsoColor>
                         <Threshold
                            id="faceSetThreshold2" upperBound="" lowerBound=""
-                           dataName="faceSetData2" > </Threshold>
+                           dataName="faceSetData2"> </Threshold>
                         <FloatVertexAttribute
                            id="faceSetAttr2" numComponents="1" value=""
                            name="faceSetData2" > </FloatVertexAttribute>
                       </IndexedFaceSet>
                     </shape>
-                    <ClipPlane
-                       id="clipPlane2" cappingStrength='0.0'
-                       plane='0 -1 0 0'></ClipPlane>
+                    <ClipPlane id="clipPlane2" plane='0 -1 0 0'></ClipPlane>
                   </Transform>
                 </Transform>
               </Transform>
