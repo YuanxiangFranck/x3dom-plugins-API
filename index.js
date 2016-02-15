@@ -53,9 +53,9 @@ function initEventListener(){
                 // Equation is a*X + b*Y +c*Z + d = 0
                 var newpos = '0, 1, 0, ' + pos;
                 clipPlane.setAttribute("on", "true");
-                get("clipPlane").setAttribute("value", newpos);
-                get("clipPlane2").setAttribute("value", '0, -1, 0, ' + (-1*pos));
+                clipPlane.setAttribute("value", newpos);
                 clipPlane.setAttribute("plane", newpos);
+                get("clipPlane2").setAttribute("plane", '0, -1, 0, ' + (-1*pos));
                 // get("disp").innerHTML = "y = "+(-1*pos);
                 createClipping(pos);
             }
@@ -69,6 +69,9 @@ function initEventListener(){
     get("isoColor2" ).addEventListener('change', updateIsoColor);
     get("threshold1").addEventListener('change', updateThreshold);
     get("threshold2").addEventListener('change', updateThreshold);
+    get("transx").addEventListener('change', updateTranslation);
+    get("transy").addEventListener('change', updateTranslation);
+    get("transz").addEventListener('change', updateTranslation);
 }
 
 /**
@@ -80,6 +83,14 @@ function updateIsoColor() {
     get("faceSetIsoColor").setAttribute("max", sliderValues.max);
     get("triSetIsoColor").setAttribute("min", sliderValues.min);
     get("triSetIsoColor").setAttribute("max", sliderValues.max);
+}
+
+function updateTranslation() {
+    var translation =
+            get("transx").value+" "+
+            get("transy").value+" "+
+            get("transz").value;
+    get("transform").setAttribute("translation", translation);
 }
 
 /**

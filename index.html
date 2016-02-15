@@ -126,6 +126,7 @@
                  plane='0 1 0 0'></ClipPlane>
             </group>
             <group>
+              <Transform id="transform" translation='0 0 0'>
               <shape>
                 <Appearance>
                   <Material > </Material>
@@ -149,6 +150,7 @@
               <ClipPlane
                  id="clipPlane2" cappingStrength='0.0'
                  plane='0 -1 0 0'></ClipPlane>
+              </Transform>
             </group>
             <!-- Switch is used to hide or unhide the clip plane -->
             <Switch whichChoice="0" id="switcher">
@@ -197,6 +199,15 @@
                        min="0" max="1" step="0.01" value="0"> </input></p>
             <p> <input id="threshold2" type="range"
                        min="0" max="1" step="0.01" value="1"> </input></p>
+          </div>
+          <div class="element_menu">
+            <b>Translation:</b>
+            <p>x <input id="transx" type="range"
+                       min="-1" max="1" step="0.01" value="0"> </input></p>
+            <p>y <input id="transy" type="range"
+                       min="-1" max="1" step="0.01" value="0"> </input></p>
+            <p>z <input id="transz" type="range"
+                       min="-1" max="1" step="0.01" value="0"> </input></p>
           </div>
         </div>
       </section>
