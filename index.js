@@ -125,12 +125,8 @@ function updateTranslation() {
  */
 function updateThreshold() {
     var sliderValues = utils.getSliderMinMax("threshold", DATA_REAL_MIN, DATA_REAL_MAX);
-    get("faceSetThreshold").setAttribute("lowerBound", sliderValues.min);
-    get("faceSetThreshold").setAttribute("upperBound", sliderValues.max);
     get("faceSetThreshold2").setAttribute("lowerBound", sliderValues.min);
     get("faceSetThreshold2").setAttribute("upperBound", sliderValues.max);
-    get("triSetThreshold").setAttribute("lowerBound", sliderValues.min);
-    get("triSetThreshold").setAttribute("upperBound", sliderValues.max);
 }
 
 /**
@@ -149,9 +145,6 @@ function createClipping(pos){
         sliderValues = utils.getSliderMinMax("isoColor", DATA_REAL_MIN, DATA_REAL_MAX);
         get("triSetIsoColor").setAttribute("min", sliderValues.min);
         get("triSetIsoColor").setAttribute("max", sliderValues.max);
-        sliderValues = utils.getSliderMinMax("threshold", DATA_REAL_MIN, DATA_REAL_MAX);
-        get("triSetThreshold").setAttribute("lowerBound", sliderValues.min);
-        get("triSetThreshold").setAttribute("upperBound", sliderValues.max);
     }
 }
 
@@ -172,8 +165,6 @@ Promise.all([loadPositionsPromise, loadIndexPromise, loadTriIndexPromise,
         DATA_REAL_MAX = Math.max.apply(null, data);
         get("faceSetIsoColor").setAttribute("min",DATA_REAL_MIN);
         get("faceSetIsoColor").setAttribute("max",DATA_REAL_MAX);
-        get("faceSetThreshold").setAttribute("lowerBound",DATA_REAL_MIN);
-        get("faceSetThreshold").setAttribute("upperBound",DATA_REAL_MAX);
         get("faceSetThreshold2").setAttribute("lowerBound",DATA_REAL_MIN);
         get("faceSetThreshold2").setAttribute("upperBound",DATA_REAL_MAX);
         // Initialise the tetra mesh : compute aabb / octree
