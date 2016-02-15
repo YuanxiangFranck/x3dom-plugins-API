@@ -93,92 +93,93 @@
                 Without it, the clipPlane would cut the TriangleSet (the created plane)
               -->
             <group>
-              <Transform rotation="1 0.7 -0.5 1.57" >
-              <shape id="shape">
-                <Appearance>
-                  <Material > </Material>
-                  <ImageTexture
-                     url='"./images/map-banded.png"'
-                     repeatS='false'
-                     repeatT='false' >
-                  </ImageTexture>
-                </Appearance>
-                <!-- All the data (coordIndex, coord, textCoord, normal) are set within index.js -->
-                <IndexedFaceSet
-                   id="faceSet" solid="false"  ccw='false'
-                   coordIndex='' normalPerVertex='false'>
-                  <Coordinate
-                     id="faceSetCoord" point=""></Coordinate>
-                  <Normal
-                     id="faceSetNormal" vector="" > </Normal>
-                  <Threshold
-                     id="faceSetThreshold" upperBound="" lowerBound=""
-                     dataName="faceSetData" > </Threshold>
-                  <IsoColor
-                     id="faceSetIsoColor" max="" min=""
-                     dataName="faceSetData" shaderOrder="-1"> </IsoColor>
-                  <FloatVertexAttribute
-                     id="faceSetAttr" numComponents="1" value=""
-                     name="faceSetData" > </FloatVertexAttribute>
-                </IndexedFaceSet>
-              </shape>
-              <ClipPlane
-                 id="clipPlane" cappingStrength='0.0'
-                 plane='0 1 0 0'></ClipPlane>
+              <Transform rotation="1 -0.5 0 1.57" >
+                <Transform rotation="0 0 1 1.57" >
+                  <shape id="shape">
+                    <Appearance>
+                      <Material > </Material>
+                      <ImageTexture
+                         url='"./images/map-banded.png"'
+                         repeatS='false'
+                         repeatT='false' >
+                      </ImageTexture>
+                    </Appearance>
+                    <!-- All the data (coordIndex, coord, textCoord, normal) are set within index.js -->
+                    <IndexedFaceSet
+                       id="faceSet" solid="false"  ccw='false'
+                       coordIndex='' normalPerVertex='false'>
+                      <Coordinate
+                         id="faceSetCoord" point=""></Coordinate>
+                      <Normal
+                         id="faceSetNormal" vector="" > </Normal>
+                      <IsoColor
+                         id="faceSetIsoColor" max="" min=""
+                         dataName="faceSetData" shaderOrder="-1"> </IsoColor>
+                      <FloatVertexAttribute
+                         id="faceSetAttr" numComponents="1" value=""
+                         name="faceSetData" > </FloatVertexAttribute>
+                    </IndexedFaceSet>
+                  </shape>
+                  <ClipPlane
+                     id="clipPlane" cappingStrength='0.0'
+                     plane='0 1 0 0'></ClipPlane>
+                </Transform>
               </Transform>
             </group>
             <group>
-              <Transform id="transform" render="true"
-                         translation='0 0 0' rotation="1 0.7 -0.5 1.57" >
-              <shape>
-                <Appearance>
-                  <Material > </Material>
-                </Appearance>
-                <!-- All the data (coordIndex, coord, textCoord, normal) are set within index.js -->
-                <IndexedFaceSet
-                   id="faceSet2" solid="false"  ccw='false'
-                   coordIndex='' normalPerVertex='false'>
-                  <Coordinate
-                     id="faceSetCoord2" point=""></Coordinate>
-                  <Normal
-                     id="faceSetNormal2" vector="" > </Normal>
-                  <Threshold
-                     id="faceSetThreshold2" upperBound="" lowerBound=""
-                     dataName="faceSetData2" > </Threshold>
-                  <FloatVertexAttribute
-                     id="faceSetAttr2" numComponents="1" value=""
-                     name="faceSetData2" > </FloatVertexAttribute>
-                </IndexedFaceSet>
-              </shape>
-              <ClipPlane
-                 id="clipPlane2" cappingStrength='0.0'
-                 plane='0 -1 0 0'></ClipPlane>
+              <Transform rotation="1 -0.5 0 1.57" >
+                <Transform rotation="0 0 1 1.57" >
+                  <Transform id="transform" render="true"
+                             translation='0 0 0'>
+                    <shape>
+                      <Appearance>
+                        <Material > </Material>
+                      </Appearance>
+                      <!-- All the data (coordIndex, coord, textCoord, normal) are set within index.js -->
+                      <IndexedFaceSet
+                         id="faceSet2" solid="false"  ccw='false'
+                         coordIndex='' normalPerVertex='false'>
+                        <Coordinate
+                           id="faceSetCoord2" point=""></Coordinate>
+                        <Normal
+                           id="faceSetNormal2" vector="" > </Normal>
+                        <Threshold
+                           id="faceSetThreshold2" upperBound="" lowerBound=""
+                           dataName="faceSetData2" > </Threshold>
+                        <FloatVertexAttribute
+                           id="faceSetAttr2" numComponents="1" value=""
+                           name="faceSetData2" > </FloatVertexAttribute>
+                      </IndexedFaceSet>
+                    </shape>
+                    <ClipPlane
+                       id="clipPlane2" cappingStrength='0.0'
+                       plane='0 -1 0 0'></ClipPlane>
+                  </Transform>
+                </Transform>
               </Transform>
             </group>
-            <!-- Switch is used to hide or unhide the clip plane -->
             <Transform id="triSetTransform" render="true"
-                       rotation="1 0.7 -0.5 1.57" >
-              <shape>
-                <appearance>
-                  <ImageTexture
-                     url='"./images/map-banded.png"'
-                     repeatS='false'
-                     repeatT='false' > </ImageTexture>
-                </appearance>
-                <TriangleSet
-                   id='triset' solid='false' colorPerVertex='true'>
-                  <Coordinate
-                     id='triSetCoordinate' point=" " > </Coordinate>
-                  <IsoColor
-                     id="triSetIsoColor" dataName="triSetData" max="" min=""></IsoColor>
-                  <Threshold
-                     id="triSetThreshold" upperBound="" lowerBound=""
-                     dataName="triSetData" > </Threshold>
-                  <FloatVertexAttribute
-                     id="triSetAttr" name="triSetData" numComponents="1" value=""> </FloatVertexAttribute>
-                </TriangleSet>
-              </shape>
+                       rotation="1 -0.5 0 1.57" >
+              <Transform rotation="0 0 1 1.57" >
+                <shape>
+                  <appearance>
+                    <ImageTexture
+                       url='"./images/map-banded.png"'
+                       repeatS='false'
+                       repeatT='false' > </ImageTexture>
+                  </appearance>
+                  <TriangleSet
+                     id='triset' solid='false' colorPerVertex='true'>
+                    <Coordinate
+                       id='triSetCoordinate' point=" " > </Coordinate>
+                    <IsoColor
+                       id="triSetIsoColor" dataName="triSetData" max="" min=""></IsoColor>
+                    <FloatVertexAttribute
+                       id="triSetAttr" name="triSetData" numComponents="1" value=""> </FloatVertexAttribute>
+                  </TriangleSet>
+                </shape>
               </Transform>
+            </Transform>
           </scene>
         </x3d>
         <script type="text/javascript" charset="utf-8" src='./bundle.js'></script>
