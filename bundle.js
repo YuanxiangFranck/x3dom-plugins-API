@@ -59,11 +59,11 @@ function initEventListener(){
             var test = get("triSetTransform").getAttribute("render");
             if (test == "true"){
                 get("triSetTransform").setAttribute("render", "false");
-                get("switcher").innerHTML= "show grey part";
+                get("clipOnButton").innerHTML= "show grey part";
             }
             else {
                 get("triSetTransform").setAttribute("render", "true");
-                get("switcher").innerHTML= "hide grey part";
+                get("clipOnButton").innerHTML= "hide grey part";
             }
         }, false );
 
