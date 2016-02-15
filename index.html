@@ -93,7 +93,8 @@
                 Without it, the clipPlane would cut the TriangleSet (the created plane)
               -->
             <group>
-              <Transform rotation="1 0.7 -0.5 1.57" >
+              <Transform rotation="1 -0.5 0 1.57" >
+              <Transform rotation="0 0 1 1.57" >
               <shape id="shape">
                 <Appearance>
                   <Material > </Material>
@@ -126,10 +127,13 @@
                  id="clipPlane" cappingStrength='0.0'
                  plane='0 1 0 0'></ClipPlane>
               </Transform>
+              </Transform>
             </group>
             <group>
+              <Transform rotation="1 -0.5 0 1.57" >
+              <Transform rotation="0 0 1 1.57" >
               <Transform id="transform" render="true"
-                         translation='0 0 0' rotation="1 0.7 -0.5 1.57" >
+                         translation='0 0 0'>
               <shape>
                 <Appearance>
                   <Material > </Material>
@@ -154,10 +158,13 @@
                  id="clipPlane2" cappingStrength='0.0'
                  plane='0 -1 0 0'></ClipPlane>
               </Transform>
+              </Transform>
+              </Transform>
             </group>
             <!-- Switch is used to hide or unhide the clip plane -->
             <Transform id="triSetTransform" render="true"
-                       rotation="1 0.7 -0.5 1.57" >
+                       rotation="1 -0.5 0 1.57" >
+              <Transform rotation="0 0 1 1.57" >
               <shape>
                 <appearance>
                   <ImageTexture
@@ -178,6 +185,7 @@
                      id="triSetAttr" name="triSetData" numComponents="1" value=""> </FloatVertexAttribute>
                 </TriangleSet>
               </shape>
+              </Transform>
               </Transform>
           </scene>
         </x3d>
