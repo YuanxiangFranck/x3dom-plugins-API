@@ -55,7 +55,7 @@ function initEventListener(){
     get("clipOnButton").addEventListener(
         'click',
         function(event){
-            var test = get("switcher").getAttribute("render");
+            var test = get("triSetTransform").getAttribute("render");
             if (test == "true"){
                 get("triSetTransform").setAttribute("render", "false");
                 get("switcher").innerHTML= "show grey part";
