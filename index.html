@@ -125,6 +125,31 @@
                  id="clipPlane" cappingStrength='0.0'
                  plane='0 1 0 0'></ClipPlane>
             </group>
+            <group>
+              <shape>
+                <Appearance>
+                  <Material > </Material>
+                </Appearance>
+                <!-- All the data (coordIndex, coord, textCoord, normal) are set within index.js -->
+                <IndexedFaceSet
+                   id="faceSet2" solid="false"  ccw='false'
+                   coordIndex='' normalPerVertex='false'>
+                  <Coordinate
+                     id="faceSetCoord2" point=""></Coordinate>
+                  <Normal
+                     id="faceSetNormal2" vector="" > </Normal>
+                  <Threshold
+                     id="faceSetThreshold2" upperBound="" lowerBound=""
+                     dataName="faceSetData2" > </Threshold>
+                  <FloatVertexAttribute
+                     id="faceSetAttr2" numComponents="1" value=""
+                     name="faceSetData2" > </FloatVertexAttribute>
+                </IndexedFaceSet>
+              </shape>
+              <ClipPlane
+                 id="clipPlane2" cappingStrength='0.0'
+                 plane='0 -1 0 0'></ClipPlane>
+            </group>
             <!-- Switch is used to hide or unhide the clip plane -->
             <Switch whichChoice="0" id="switcher">
               <shape>
