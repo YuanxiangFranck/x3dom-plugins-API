@@ -58,11 +58,11 @@ function initEventListener(){
             var test = get("triSetTransform").getAttribute("render");
             if (test == "true"){
                 get("triSetTransform").setAttribute("render", "false");
-                get("clipOnButton").innerHTML= "show grey part";
+                get("clipOnButton").innerHTML= "show clip plane";
             }
             else {
                 get("triSetTransform").setAttribute("render", "true");
-                get("clipOnButton").innerHTML= "hide grey part";
+                get("clipOnButton").innerHTML= "hide clip Plane";
             }
         }, false );
 
