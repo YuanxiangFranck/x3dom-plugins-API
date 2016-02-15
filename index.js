@@ -38,14 +38,32 @@ function initEventListener(){
             get("transform").setAttribute("translation", "0 0 0");
         }, false );
 
+    get("hideButton").addEventListener(
+        'click',
+        function(event){
+            var test = get("transform").getAttribute("render");
+            if (test == "true"){
+                get("transform").setAttribute("render", "false");
+                get("hideButton").innerHTML= "show grey part";
+            }
+            else {
+                get("transform").setAttribute("render", "true");
+                get("hideButton").innerHTML= "hide grey part";
+            }
+        }, false );
+
     get("clipOnButton").addEventListener(
         'click',
         function(event){
-            var clipPlane = get("clipPlane");
-            if (clipPlane.getAttribute("on")==="false") return;
-            var switcher = get("switcher");
-            var on = switcher.getAttribute("whichChoice") === "0"? "-1" : "0";
-            switcher.setAttribute("whichChoice", on);
+            var test = get("switcher").getAttribute("render");
+            if (test == "true"){
+                get("triSetTransform").setAttribute("render", "false");
+                get("switcher").innerHTML= "show grey part";
+            }
+            else {
+                get("triSetTransform").setAttribute("render", "true");
+                get("switcher").innerHTML= "hide grey part";
+            }
         }, false );
 
     // Slider to move the clipping plane in y axis

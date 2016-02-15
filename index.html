@@ -37,7 +37,7 @@
         <h2>
           <a id="presentation" class="anchor" href="#presentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Presentation</h2>
 
-        <p>During my internship, I worked on the creation of
+        <p>During my internship at <a href="https://www.logilab.fr/">Logilab</a> in 2016,, I worked on the creation of
           x3dom-based tools for mesh data visualization and analysis.
           I wanted to create new DOM nodes that integrate nicely in a
           standard x3dom tree, namely iso-color, threshold,
@@ -93,6 +93,7 @@
                 Without it, the clipPlane would cut the TriangleSet (the created plane)
               -->
             <group>
+              <Transform rotation="1 0.7 -0.5 1.57" >
               <shape id="shape">
                 <Appearance>
                   <Material > </Material>
@@ -124,9 +125,11 @@
               <ClipPlane
                  id="clipPlane" cappingStrength='0.0'
                  plane='0 1 0 0'></ClipPlane>
+              </Transform>
             </group>
             <group>
-              <Transform id="transform" translation='0 0 0'>
+              <Transform id="transform" render="true"
+                         translation='0 0 0' rotation="1 0.7 -0.5 1.57" >
               <shape>
                 <Appearance>
                   <Material > </Material>
@@ -153,7 +156,8 @@
               </Transform>
             </group>
             <!-- Switch is used to hide or unhide the clip plane -->
-            <Switch whichChoice="0" id="switcher">
+            <Transform id="triSetTransform" render="true"
+                       rotation="1 0.7 -0.5 1.57" >
               <shape>
                 <appearance>
                   <ImageTexture
@@ -174,7 +178,7 @@
                      id="triSetAttr" name="triSetData" numComponents="1" value=""> </FloatVertexAttribute>
                 </TriangleSet>
               </shape>
-            </Switch>
+              </Transform>
           </scene>
         </x3d>
         <script type="text/javascript" charset="utf-8" src='./bundle.js'></script>
@@ -184,6 +188,7 @@
             <p> <input id="clipSlider" type="range"
                        min="0" max="1" step="0.001" value="0"></input></p>
             <p> <button id="clipOnButton"  type="button">hide clip plane</button></p>
+            <p> <button id="hideButton"  type="button">hide grey part</button></p>
             <!-- <p>  <span id="disp" style="color:#00CC00"> loading...</span></p> -->
           </div>
           <div class="element_menu">
