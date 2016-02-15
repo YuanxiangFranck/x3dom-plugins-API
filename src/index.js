@@ -12,11 +12,12 @@ require('./x3dom/plugins/isoColor.js')(x3dom);
 
 let datadir = "./binGeo/piston/";
 // Jbinary read and load the binary files and return the arraybuffer with a promise
-let loadPositionsPromise = jBinary.loadData(datadir+'coord.bin.gz');
-let loadIndexPromise     = jBinary.loadData(datadir+'tetras.bin.gz');
-let loadTriIndexPromise  = jBinary.loadData(datadir+'faces.bin.gz');
-let loadDataPromise      = jBinary.loadData(datadir+'data.bin.gz');
-let loadNormalsPromise   = jBinary.loadData(datadir+'normals.bin.gz');
+
+var loadPositionsPromise = jBinary.loadData(datadir+'coord.bin');
+var loadIndexPromise     = jBinary.loadData(datadir+'tetras.bin');
+var loadTriIndexPromise  = jBinary.loadData(datadir+'faces.bin');
+var loadDataPromise      = jBinary.loadData(datadir+'data.bin');
+var loadNormalsPromise   = jBinary.loadData(datadir+'normals.bin');
 
 let loadPromise = new Promise(function(resolve,reject){
     document.addEventListener("load", resolve );
