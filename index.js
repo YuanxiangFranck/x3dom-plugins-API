@@ -29,6 +29,15 @@ var POS_MAX = 0;
  */
 function initEventListener(){
     // Button to hide or unhide the clipping plane
+    get("resetButton").addEventListener(
+        'click',
+        function(event){
+            get("transx").value=0;
+            get("transy").value=0;
+            get("transz").value=0;
+            get("transform").setAttribute("translation", "0 0 0");
+        }, false );
+
     get("clipOnButton").addEventListener(
         'click',
         function(event){
