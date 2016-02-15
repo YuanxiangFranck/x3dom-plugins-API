@@ -68,7 +68,7 @@ function initEventListener(){
 
     // Slider to move the clipping plane in y axis
     get("clipSlider").addEventListener(
-        'change',
+        'input',
         function(event){
             var pos = -1*(POS_MIN + this.value*(POS_MAX-POS_MIN));
             var clipPlane = get("clipPlane");
@@ -92,13 +92,13 @@ function initEventListener(){
         }, false );
 
     // Slider to change the iso color
-    get("isoColor1" ).addEventListener('change', updateIsoColor);
-    get("isoColor2" ).addEventListener('change', updateIsoColor);
-    get("threshold1").addEventListener('change', updateThreshold);
-    get("threshold2").addEventListener('change', updateThreshold);
-    get("transx").addEventListener('change', updateTranslation);
-    get("transy").addEventListener('change', updateTranslation);
-    get("transz").addEventListener('change', updateTranslation);
+    get("isoColor1" ).addEventListener('input', updateIsoColor);
+    get("isoColor2" ).addEventListener('input', updateIsoColor);
+    get("threshold1").addEventListener('input', updateThreshold);
+    get("threshold2").addEventListener('input', updateThreshold);
+    get("transx").addEventListener('input', updateTranslation);
+    get("transy").addEventListener('input', updateTranslation);
+    get("transz").addEventListener('input', updateTranslation);
 }
 
 /**
