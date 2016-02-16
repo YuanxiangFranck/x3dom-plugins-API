@@ -36,19 +36,19 @@ function initEventListener(){
             get("transx").value=0;
             get("transy").value=0;
             get("transz").value=0;
-            get("transform").setAttribute("translation", "0 0 0");
+            get("translation").setAttribute("translation", "0 0 0");
         }, false );
 
     get("hideButton").addEventListener(
         'click',
         function(event){
-            var test = get("transform").getAttribute("render");
+            var test = get("groupFaceSet2").getAttribute("render");
             if (test == "true"){
-                get("transform").setAttribute("render", "false");
+                get("groupFaceSet2").setAttribute("render", "false");
                 get("hideButton").innerHTML= "show grey part";
             }
             else {
-                get("transform").setAttribute("render", "true");
+                get("groupFaceSet2").setAttribute("render", "true");
                 get("hideButton").innerHTML= "hide grey part";
             }
         }, false );
@@ -59,11 +59,11 @@ function initEventListener(){
             var test = get("triSetTransform").getAttribute("render");
             if (test == "true"){
                 get("triSetTransform").setAttribute("render", "false");
-                get("clipOnButton").innerHTML= "show grey part";
+                get("clipOnButton").innerHTML= "show clip plane";
             }
             else {
                 get("triSetTransform").setAttribute("render", "true");
-                get("clipOnButton").innerHTML= "hide grey part";
+                get("clipOnButton").innerHTML= "hide clip Plane";
             }
         }, false );
 
@@ -75,6 +75,7 @@ function initEventListener(){
             var clipPlane = get("clipPlane");
             if (this.value == 0) {
                 clipPlane.setAttribute("on", "false");
+                get("clipPlane2").setAttribute("plane", '0, -1, 0, ' + (-1*pos));
                 // get("disp").innerHTML = "no clipping";
             }
             else if (CAN_START){
@@ -118,7 +119,7 @@ function updateTranslation() {
             get("transx").value+" "+
             get("transy").value+" "+
             get("transz").value;
-    get("transform").setAttribute("translation", translation);
+    get("translation").setAttribute("translation", translation);
 }
 
 /**
@@ -126,6 +127,10 @@ function updateTranslation() {
  */
 function updateThreshold() {
     var sliderValues = utils.getSliderMinMax("threshold", DATA_REAL_MIN, DATA_REAL_MAX);
+    get("faceSetThreshold").setAttribute("lowerBound", sliderValues.min);
+    get("faceSetThreshold").setAttribute("upperBound", sliderValues.max);
+    get("triSetThreshold").setAttribute("lowerBound", sliderValues.min);
+    get("triSetThreshold").setAttribute("upperBound", sliderValues.max);
     get("faceSetThreshold2").setAttribute("lowerBound", sliderValues.min);
     get("faceSetThreshold2").setAttribute("upperBound", sliderValues.max);
 }
@@ -166,6 +171,12 @@ Promise.all([loadPositionsPromise, loadIndexPromise, loadTriIndexPromise,
         DATA_REAL_MAX = Math.max.apply(null, data);
         get("faceSetIsoColor").setAttribute("min",DATA_REAL_MIN);
         get("faceSetIsoColor").setAttribute("max",DATA_REAL_MAX);
+        get("faceSetIsoColor2").setAttribute("min",DATA_REAL_MIN);
+        get("faceSetIsoColor2").setAttribute("max",DATA_REAL_MAX);
+        get("triSetThreshold").setAttribute("upperBound",DATA_REAL_MAX);
+        get("triSetThreshold").setAttribute("lowerBound",DATA_REAL_MIN);
+        get("faceSetThreshold").setAttribute("lowerBound",DATA_REAL_MIN);
+        get("faceSetThreshold").setAttribute("upperBound",DATA_REAL_MAX);
         get("faceSetThreshold2").setAttribute("lowerBound",DATA_REAL_MIN);
         get("faceSetThreshold2").setAttribute("upperBound",DATA_REAL_MAX);
         // Initialise the tetra mesh : compute aabb / octree
@@ -1545,8 +1556,8 @@ function setIndexFaceSet(arrays){
     updateCoordIndex(get("faceSet"), coordIndex);
     updateDataValue(get("faceSetAttr"), data);
     updateDataValue(get("triSetAttr"), data);
-    updateCoordPoint(get("faceSetCoord2"), positions);
-    updateNormalVector(get("faceSetNormal2"), normal);
+    // updateCoordPoint(get("faceSetCoord2"), positions);
+    // updateNormalVector(get("faceSetNormal2"), normal);
     updateCoordIndex(get("faceSet2"), coordIndex);
     updateDataValue(get("faceSetAttr2"), data);
 }
