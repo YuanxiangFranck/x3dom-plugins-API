@@ -118,6 +118,9 @@
                       <FloatVertexAttribute
                          id="faceSetAttr" numComponents="1" value=""
                          name="faceSetData" > </FloatVertexAttribute>
+                        <Threshold
+                           id="faceSetThreshold" upperBound="" lowerBound=""
+                           dataName="faceSetData"> </Threshold>
                     </IndexedFaceSet>
                   </shape>
                   <ClipPlane id="clipPlane" plane='0 1 0 0'></ClipPlane>
@@ -127,9 +130,10 @@
             <group id="groupFaceSet2"render="true" >
               <Transform rotation="1 -0.5 0 1.57" >
                 <Transform rotation="0 0 1 1.57" >
-                  <Transform id="translation" translation='0 0 0'>
+                  <Transform id="translation" translation='0 -1 0'>
                     <shape>
                       <Appearance id="app2">
+                        <Material id="mat1" > </Material>
                         <ImageTexture
                            url='"./images/map-banded2.png"'
                            repeatS='false'
@@ -173,6 +177,9 @@
                        id='triSetCoordinate' point=" " > </Coordinate>
                     <IsoColor
                        id="triSetIsoColor" dataName="triSetData" max="" min=""></IsoColor>
+                    <Threshold
+                       id="triSetThreshold" upperBound="" lowerBound=""
+                       dataName="triSetData"> </Threshold>
                     <FloatVertexAttribute
                        id="triSetAttr" name="triSetData" numComponents="1" value=""> </FloatVertexAttribute>
                   </TriangleSet>
@@ -186,7 +193,7 @@
           <div class="element_menu">
             <p> <label for="clipSlider">Clip Plane:</label></p>
             <p> <input id="clipSlider" type="range"
-                       min="0" max="1" step="0.001" value="0"></input></p>
+                       min="0" max="1" step="0.001" value="0.5"></input></p>
             <p> <button id="clipOnButton"  type="button">hide clip plane</button></p>
             <p> <button id="hideButton"  type="button">hide grey part</button></p>
             <!-- <p>  <span id="disp" style="color:#00CC00"> loading...</span></p> -->
@@ -211,7 +218,7 @@
             <p>x <input id="transx" type="range"
                        min="-1" max="1" step="0.01" value="0"> </input></p>
             <p>y <input id="transy" type="range"
-                       min="-1" max="1" step="0.01" value="0"> </input></p>
+                       min="-1" max="1" step="0.01" value="-1"> </input></p>
             <p>z <input id="transz" type="range"
                        min="-1" max="1" step="0.01" value="0"> </input></p>
           </div>
