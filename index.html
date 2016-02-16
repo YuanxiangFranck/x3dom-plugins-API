@@ -37,7 +37,7 @@
         <h2>
           <a id="presentation" class="anchor" href="#presentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Presentation</h2>
 
-        <p>During my internship, I worked on the creation of
+        <p>During my internship at <a href="https://www.logilab.fr/">Logilab</a> in 2016,, I worked on the creation of
           x3dom-based tools for mesh data visualization and analysis.
           I wanted to create new DOM nodes that integrate nicely in a
           standard x3dom tree, namely iso-color, threshold,
@@ -63,8 +63,8 @@
           The relevant markup looks like:</p>
 
 <div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">TriangleSet</span>&gt;
-  &lt;<span class="pl-ent">Coordinate</span>&gt; <span class="pl-e">point</span>=<span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span> </span> &lt;/<span class="pl-ent">Coordinate</span>&gt;
-  &lt;<span class="pl-ent">Normal</span>&gt; <span class="pl-e">vector</span>=<span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span> </span> &lt;/<span class="pl-ent">Normal</span>&gt;
+  &lt;<span class="pl-ent">Coordinate</span> <span class="pl-e">point</span>=<span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"&gt;</span></span> </span> &lt;/<span class="pl-ent">Coordinate</span>&gt;
+  &lt;<span class="pl-ent">Normal</span> <span class="pl-e">vector</span>=<span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"&gt;</span></span> </span> &lt;/<span class="pl-ent">Normal</span>&gt;
   &lt;<span class="pl-ent">Threshold</span>
      <span class="pl-e">upperBound</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">lowerBound</span>=<span class="pl-s"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span> <span class="pl-e">dataName</span>=<span class="pl-s"><span class="pl-pds">"</span>triSetData<span class="pl-pds">"</span></span> &gt; &lt;/<span class="pl-ent">Threshold</span>&gt;
   &lt;<span class="pl-ent">IsoColor</span>
@@ -88,66 +88,104 @@
       <section>
         <x3d id='x3dElem' width='800px' height='600px' >
           <scene>
-            <!--
-                The groupe is to link the clip plane to the IndexedFaceSet.
-                Without it, the clipPlane would cut the TriangleSet (the created plane)
-              -->
+            <!-- The groupe is to link the clip plane to the
+                IndexedFaceSet.  Without it, the clipPlane would cut
+                the TriangleSet (the created plane) -->
             <group>
-              <shape id="shape">
-                <Appearance>
-                  <Material > </Material>
-                  <ImageTexture
-                     url='"./images/map-banded.png"'
-                     repeatS='false'
-                     repeatT='false' >
-                  </ImageTexture>
-                </Appearance>
-                <!-- All the data (coordIndex, coord, textCoord, normal) are set within index.js -->
-                <IndexedFaceSet
-                   id="faceSet" solid="false"  ccw='false'
-                   coordIndex='' normalPerVertex='false'>
-                  <Coordinate
-                     id="faceSetCoord" point=""></Coordinate>
-                  <Normal
-                     id="faceSetNormal" vector="" > </Normal>
-                  <Threshold
-                     id="faceSetThreshold" upperBound="" lowerBound=""
-                     dataName="faceSetData" > </Threshold>
-                  <IsoColor
-                     id="faceSetIsoColor" max="" min=""
-                     dataName="faceSetData" shaderOrder="-1"> </IsoColor>
-                  <FloatVertexAttribute
-                     id="faceSetAttr" numComponents="1" value=""
-                     name="faceSetData" > </FloatVertexAttribute>
-                </IndexedFaceSet>
-              </shape>
-              <ClipPlane
-                 id="clipPlane" cappingStrength='0.0'
-                 plane='0 1 0 0'></ClipPlane>
+              <Transform rotation="1 -0.5 0 1.57" >
+                <Transform rotation="0 0 1 1.57" >
+                  <shape id="shape">
+                    <Appearance id="app1">
+                      <Material id="mat1" > </Material>
+                      <ImageTexture
+                         url='"./images/map-banded.png"'
+                         repeatS='false'
+                         repeatT='false' >
+                      </ImageTexture>
+                    </Appearance>
+                    <!-- All the data (coordIndex, coord, textCoord,
+                    normal) are set within index.js -->
+                    <IndexedFaceSet
+                       id="faceSet" solid="false"  ccw='false'
+                       coordIndex='' normalPerVertex='false'>
+                      <Coordinate
+                         id="faceSetCoord" point=""></Coordinate>
+                      <Normal
+                         id="faceSetNormal" vector="" > </Normal>
+                      <IsoColor
+                         id="faceSetIsoColor" max="" min=""
+                         dataName="faceSetData"> </IsoColor>
+                      <FloatVertexAttribute
+                         id="faceSetAttr" numComponents="1" value=""
+                         name="faceSetData" > </FloatVertexAttribute>
+                        <Threshold
+                           id="faceSetThreshold" upperBound="" lowerBound=""
+                           dataName="faceSetData"> </Threshold>
+                    </IndexedFaceSet>
+                  </shape>
+                  <ClipPlane id="clipPlane" plane='0 1 0 0'></ClipPlane>
+                </Transform>
+              </Transform>
             </group>
-            <!-- Switch is used to hide or unhide the clip plane -->
-            <Switch whichChoice="0" id="switcher">
-              <shape>
-                <appearance>
-                  <ImageTexture
-                     url='"./images/map-banded.png"'
-                     repeatS='false'
-                     repeatT='false' > </ImageTexture>
-                </appearance>
-                <TriangleSet
-                   id='triset' solid='false' colorPerVertex='true'>
-                  <Coordinate
-                     id='triSetCoordinate' point=" " > </Coordinate>
-                  <IsoColor
-                     id="triSetIsoColor" dataName="triSetData" max="" min=""></IsoColor>
-                  <Threshold
-                     id="triSetThreshold" upperBound="" lowerBound=""
-                     dataName="triSetData" > </Threshold>
-                  <FloatVertexAttribute
-                     id="triSetAttr" name="triSetData" numComponents="1" value=""> </FloatVertexAttribute>
-                </TriangleSet>
-              </shape>
-            </Switch>
+            <group id="groupFaceSet2"render="true" >
+              <Transform rotation="1 -0.5 0 1.57" >
+                <Transform rotation="0 0 1 1.57" >
+                  <Transform id="translation" translation='0 -1 0'>
+                    <shape>
+                      <Appearance id="app2">
+                        <Material id="mat1" > </Material>
+                        <ImageTexture
+                           url='"./images/map-banded2.png"'
+                           repeatS='false'
+                           repeatT='false' >
+                        </ImageTexture>
+                      </Appearance>
+                      <IndexedFaceSet
+                         id="faceSet2" solid="false"  ccw='false'
+                         coordIndex='' normalPerVertex='false'>
+                        <Coordinate use="faceSetCoord"></Coordinate>
+                        <Normal use="faceSetNormal"> </Normal>
+                        <IsoColor
+                           id="faceSetIsoColor2" max="" min=""
+                           dataName="faceSetData2"> </IsoColor>
+                        <Threshold
+                           id="faceSetThreshold2" upperBound="" lowerBound=""
+                           dataName="faceSetData2"> </Threshold>
+                        <FloatVertexAttribute
+                           id="faceSetAttr2" numComponents="1" value=""
+                           name="faceSetData2" > </FloatVertexAttribute>
+                      </IndexedFaceSet>
+                    </shape>
+                    <ClipPlane id="clipPlane2" plane='0 -1 0 0'></ClipPlane>
+                  </Transform>
+                </Transform>
+              </Transform>
+            </group>
+            <Transform id="triSetTransform" render="true"
+                       rotation="1 -0.5 0 1.57" >
+              <Transform rotation="0 0 1 1.57" >
+                <shape>
+                  <appearance>
+                    <ImageTexture
+                       url='"./images/map-banded.png"'
+                       repeatS='false'
+                       repeatT='false' > </ImageTexture>
+                  </appearance>
+                  <TriangleSet
+                     id='triset' solid='false' colorPerVertex='true'>
+                    <Coordinate
+                       id='triSetCoordinate' point=" " > </Coordinate>
+                    <IsoColor
+                       id="triSetIsoColor" dataName="triSetData" max="" min=""></IsoColor>
+                    <Threshold
+                       id="triSetThreshold" upperBound="" lowerBound=""
+                       dataName="triSetData"> </Threshold>
+                    <FloatVertexAttribute
+                       id="triSetAttr" name="triSetData" numComponents="1" value=""> </FloatVertexAttribute>
+                  </TriangleSet>
+                </shape>
+              </Transform>
+            </Transform>
           </scene>
         </x3d>
         <script type="text/javascript" charset="utf-8" src='./bundle.js'></script>
@@ -155,8 +193,9 @@
           <div class="element_menu">
             <p> <label for="clipSlider">Clip Plane:</label></p>
             <p> <input id="clipSlider" type="range"
-                       min="0" max="1" step="0.001" value="0"></input></p>
+                       min="0" max="1" step="0.001" value="0.5"></input></p>
             <p> <button id="clipOnButton"  type="button">hide clip plane</button></p>
+            <p> <button id="hideButton"  type="button">hide grey part</button></p>
             <!-- <p>  <span id="disp" style="color:#00CC00"> loading...</span></p> -->
           </div>
           <div class="element_menu">
@@ -172,6 +211,16 @@
                        min="0" max="1" step="0.01" value="0"> </input></p>
             <p> <input id="threshold2" type="range"
                        min="0" max="1" step="0.01" value="1"> </input></p>
+          </div>
+          <div class="element_menu">
+            <b>Translation:</b>
+            <button id="resetButton"  type="button">reset</button>
+            <p>x <input id="transx" type="range"
+                       min="-1" max="1" step="0.01" value="0"> </input></p>
+            <p>y <input id="transy" type="range"
+                       min="-1" max="1" step="0.01" value="-1"> </input></p>
+            <p>z <input id="transz" type="range"
+                       min="-1" max="1" step="0.01" value="0"> </input></p>
           </div>
         </div>
       </section>

@@ -29,32 +29,61 @@ var POS_MAX = 0;
  */
 function initEventListener(){
     // Button to hide or unhide the clipping plane
+    get("resetButton").addEventListener(
+        'click',
+        function(event){
+            get("transx").value=0;
+            get("transy").value=0;
+            get("transz").value=0;
+            get("translation").setAttribute("translation", "0 0 0");
+        }, false );
+
+    get("hideButton").addEventListener(
+        'click',
+        function(event){
+            var test = get("groupFaceSet2").getAttribute("render");
+            if (test == "true"){
+                get("groupFaceSet2").setAttribute("render", "false");
+                get("hideButton").innerHTML= "show grey part";
+            }
+            else {
+                get("groupFaceSet2").setAttribute("render", "true");
+                get("hideButton").innerHTML= "hide grey part";
+            }
+        }, false );
+
     get("clipOnButton").addEventListener(
         'click',
         function(event){
-            var clipPlane = get("clipPlane");
-            if (clipPlane.getAttribute("on")==="false") return;
-            var switcher = get("switcher");
-            var on = switcher.getAttribute("whichChoice") === "0"? "-1" : "0";
-            switcher.setAttribute("whichChoice", on);
+            var test = get("triSetTransform").getAttribute("render");
+            if (test == "true"){
+                get("triSetTransform").setAttribute("render", "false");
+                get("clipOnButton").innerHTML= "show clip plane";
+            }
+            else {
+                get("triSetTransform").setAttribute("render", "true");
+                get("clipOnButton").innerHTML= "hide clip Plane";
+            }
         }, false );
 
     // Slider to move the clipping plane in y axis
     get("clipSlider").addEventListener(
-        'change',
+        'input',
         function(event){
             var pos = -1*(POS_MIN + this.value*(POS_MAX-POS_MIN));
             var clipPlane = get("clipPlane");
             if (this.value == 0) {
                 clipPlane.setAttribute("on", "false");
+                get("clipPlane2").setAttribute("plane", '0, -1, 0, ' + (-1*pos));
                 // get("disp").innerHTML = "no clipping";
             }
             else if (CAN_START){
                 // Equation is a*X + b*Y +c*Z + d = 0
                 var newpos = '0, 1, 0, ' + pos;
                 clipPlane.setAttribute("on", "true");
-                get("clipPlane").setAttribute("value", newpos);
+                clipPlane.setAttribute("value", newpos);
                 clipPlane.setAttribute("plane", newpos);
+                get("clipPlane2").setAttribute("plane", '0, -1, 0, ' + (-1*pos));
                 // get("disp").innerHTML = "y = "+(-1*pos);
                 createClipping(pos);
             }
@@ -64,10 +93,13 @@ function initEventListener(){
         }, false );
 
     // Slider to change the iso color
-    get("isoColor1" ).addEventListener('change', updateIsoColor);
-    get("isoColor2" ).addEventListener('change', updateIsoColor);
-    get("threshold1").addEventListener('change', updateThreshold);
-    get("threshold2").addEventListener('change', updateThreshold);
+    get("isoColor1" ).addEventListener('input', updateIsoColor);
+    get("isoColor2" ).addEventListener('input', updateIsoColor);
+    get("threshold1").addEventListener('input', updateThreshold);
+    get("threshold2").addEventListener('input', updateThreshold);
+    get("transx").addEventListener('input', updateTranslation);
+    get("transy").addEventListener('input', updateTranslation);
+    get("transz").addEventListener('input', updateTranslation);
 }
 
 /**
@@ -81,6 +113,14 @@ function updateIsoColor() {
     get("triSetIsoColor").setAttribute("max", sliderValues.max);
 }
 
+function updateTranslation() {
+    var translation =
+            get("transx").value+" "+
+            get("transy").value+" "+
+            get("transz").value;
+    get("translation").setAttribute("translation", translation);
+}
+
 /**
  * Update the map color with the new border values
  */
@@ -90,6 +130,8 @@ function updateThreshold() {
     get("faceSetThreshold").setAttribute("upperBound", sliderValues.max);
     get("triSetThreshold").setAttribute("lowerBound", sliderValues.min);
     get("triSetThreshold").setAttribute("upperBound", sliderValues.max);
+    get("faceSetThreshold2").setAttribute("lowerBound", sliderValues.min);
+    get("faceSetThreshold2").setAttribute("upperBound", sliderValues.max);
 }
 
 /**
@@ -108,9 +150,6 @@ function createClipping(pos){
         sliderValues = utils.getSliderMinMax("isoColor", DATA_REAL_MIN, DATA_REAL_MAX);
         get("triSetIsoColor").setAttribute("min", sliderValues.min);
         get("triSetIsoColor").setAttribute("max", sliderValues.max);
-        sliderValues = utils.getSliderMinMax("threshold", DATA_REAL_MIN, DATA_REAL_MAX);
-        get("triSetThreshold").setAttribute("lowerBound", sliderValues.min);
-        get("triSetThreshold").setAttribute("upperBound", sliderValues.max);
     }
 }
 
@@ -131,8 +170,14 @@ Promise.all([loadPositionsPromise, loadIndexPromise, loadTriIndexPromise,
         DATA_REAL_MAX = Math.max.apply(null, data);
         get("faceSetIsoColor").setAttribute("min",DATA_REAL_MIN);
         get("faceSetIsoColor").setAttribute("max",DATA_REAL_MAX);
+        get("faceSetIsoColor2").setAttribute("min",DATA_REAL_MIN);
+        get("faceSetIsoColor2").setAttribute("max",DATA_REAL_MAX);
+        get("triSetThreshold").setAttribute("upperBound",DATA_REAL_MAX);
+        get("triSetThreshold").setAttribute("lowerBound",DATA_REAL_MIN);
         get("faceSetThreshold").setAttribute("lowerBound",DATA_REAL_MIN);
         get("faceSetThreshold").setAttribute("upperBound",DATA_REAL_MAX);
+        get("faceSetThreshold2").setAttribute("lowerBound",DATA_REAL_MIN);
+        get("faceSetThreshold2").setAttribute("upperBound",DATA_REAL_MAX);
         // Initialise the tetra mesh : compute aabb / octree
         TETRAMESH.initTetraMesh(positions, tetraArray, data);
         POS_MIN = TETRAMESH.octree_.aabbLoose_.min_[1];
