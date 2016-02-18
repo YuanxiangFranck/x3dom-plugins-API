@@ -89,11 +89,11 @@
         <x3d id='x3dElem' width='800px' height='600px' >
           <scene>
             <!-- The groupe is to link the clip plane to the
-                IndexedFaceSet.  Without it, the clipPlane would cut
-                the TriangleSet (the created plane) -->
-            <group>
-              <Transform rotation="1 -0.5 0 1.57" >
-                <Transform rotation="0 0 1 1.57" >
+                 IndexedFaceSet.  Without it, the clipPlane would cut
+                 the TriangleSet (the created plane) -->
+            <Transform rotation="1 -0.5 0 1.57" >
+              <Transform rotation="0 0 1 1.57" >
+                <group>
                   <shape id="shape">
                     <Appearance id="app1">
                       <Material id="mat1" > </Material>
@@ -104,7 +104,7 @@
                       </ImageTexture>
                     </Appearance>
                     <!-- All the data (coordIndex, coord, textCoord,
-                    normal) are set within index.js -->
+                         normal) are set within index.js -->
                     <IndexedFaceSet
                        id="faceSet" solid="false"  ccw='false'
                        coordIndex='' normalPerVertex='false'>
@@ -118,18 +118,14 @@
                       <FloatVertexAttribute
                          id="faceSetAttr" numComponents="1" value=""
                          name="faceSetData" > </FloatVertexAttribute>
-                        <Threshold
-                           id="faceSetThreshold" upperBound="" lowerBound=""
-                           dataName="faceSetData"> </Threshold>
+                      <Threshold
+                         id="faceSetThreshold" upperBound="" lowerBound=""
+                         dataName="faceSetData"> </Threshold>
                     </IndexedFaceSet>
                   </shape>
                   <ClipPlane id="clipPlane" plane='0 1 0 0'></ClipPlane>
-                </Transform>
-              </Transform>
-            </group>
-            <group id="groupFaceSet2"render="true" >
-              <Transform rotation="1 -0.5 0 1.57" >
-                <Transform rotation="0 0 1 1.57" >
+                </group>
+                <group id="groupFaceSet2"render="true" >
                   <Transform id="translation" translation='0 -1 0'>
                     <shape>
                       <Appearance id="app2">
@@ -158,32 +154,29 @@
                     </shape>
                     <ClipPlane id="clipPlane2" plane='0 -1 0 0'></ClipPlane>
                   </Transform>
-                </Transform>
-              </Transform>
-            </group>
-            <Transform id="triSetTransform" render="true"
-                       rotation="1 -0.5 0 1.57" >
-              <Transform rotation="0 0 1 1.57" >
-                <shape>
-                  <appearance>
-                    <ImageTexture
-                       url='"./images/map-banded.png"'
-                       repeatS='false'
-                       repeatT='false' > </ImageTexture>
-                  </appearance>
-                  <TriangleSet
-                     id='triset' solid='false' colorPerVertex='true'>
-                    <Coordinate
-                       id='triSetCoordinate' point=" " > </Coordinate>
-                    <IsoColor
-                       id="triSetIsoColor" dataName="triSetData" max="" min=""></IsoColor>
-                    <Threshold
-                       id="triSetThreshold" upperBound="" lowerBound=""
-                       dataName="triSetData"> </Threshold>
-                    <FloatVertexAttribute
-                       id="triSetAttr" name="triSetData" numComponents="1" value=""> </FloatVertexAttribute>
-                  </TriangleSet>
-                </shape>
+                </group>
+                <group id="triSetTransform" render="true">
+                  <shape>
+                    <appearance>
+                      <ImageTexture
+                         url='"./images/map-banded.png"'
+                         repeatS='false'
+                         repeatT='false' > </ImageTexture>
+                    </appearance>
+                    <TriangleSet
+                       id='triset' solid='false' colorPerVertex='true'>
+                      <Coordinate
+                         id='triSetCoordinate' point=" " > </Coordinate>
+                      <IsoColor
+                         id="triSetIsoColor" dataName="triSetData" max="" min=""></IsoColor>
+                      <Threshold
+                         id="triSetThreshold" upperBound="" lowerBound=""
+                         dataName="triSetData"> </Threshold>
+                      <FloatVertexAttribute
+                         id="triSetAttr" name="triSetData" numComponents="1" value=""> </FloatVertexAttribute>
+                    </TriangleSet>
+                  </shape>
+                </group>
               </Transform>
             </Transform>
           </scene>
