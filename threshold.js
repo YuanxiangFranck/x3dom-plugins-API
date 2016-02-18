@@ -1,4 +1,5 @@
 /** @namespace x3dom.nodeTypes */
+var defineClass = x3dom.defineClass;
 
 function new_node(x3dom){
     x3dom.registerNodeType(
@@ -90,20 +91,3 @@ function new_node(x3dom){
 }
 
 exports.new_node = new_node;
-
-function defineClass(parent, ctor, methods) {
-    if (parent) {
-        function Inheritance() {}
-        Inheritance.prototype = parent.prototype;
-
-        ctor.prototype = new Inheritance();
-        ctor.prototype.constructor = ctor;
-        ctor.superClass = parent;
-    }
-    if (methods) {
-        for (var m in methods) {
-            ctor.prototype[m] = methods[m];
-        }
-    }
-    return ctor;
-}
