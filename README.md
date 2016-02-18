@@ -173,7 +173,7 @@ x3dom.registerNodeType(
 #### Link to the sources of the plugins:
 
 * [threshold.js](https://github.com/YuanxiangFranck/x3dom-plugins-API/blob/master/threshold.js)
-* [color-map.js](https://github.com/YuanxiangFranck/x3dom-plugins-API/blob/master/color-map.js)
+* [isoColor.js](https://github.com/YuanxiangFranck/x3dom-plugins-API/blob/master/isoColor.js)
 
 #### To add the plugins, after loading x3dom add the load the plugins :
 ```javascript
