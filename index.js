@@ -20,7 +20,7 @@ var loadPromise = new Promise(function(resolve,reject){
     document.addEventListener("load", resolve );
 });
 var TETRAMESH = new TetraMesh();
-var CAN_START  = false;
+var HAS_SLICE  = false;
 var DATA_REAL_MIN = 0;
 var DATA_REAL_MAX = 0;
 // Lower and upper bound for the geometry ( y axis)
@@ -38,7 +38,7 @@ function initEventListener(){
             get("transx").value=0;
             get("transy").value=0;
             get("transz").value=0;
-            get("translation").setAttribute("translation", "0 0 0");
+            get("groupFaceSet2").setAttribute("translation", "0 0 0");
         }, false );
 
     get("cboxUncolored").addEventListener(
@@ -84,16 +84,14 @@ function initEventListener(){
             if (this.value == 0) {
                 clipPlane.setAttribute("on", "false");
                 get("clipPlane2").setAttribute("plane", '0, -1, 0, ' + (-1*pos));
-                // get("disp").innerHTML = "no clipping";
             }
-            else if (CAN_START){
+            else if (HAS_SLICE){
                 // Equation is a*X + b*Y +c*Z + d = 0
                 var newpos = '0, 1, 0, ' + pos;
                 clipPlane.setAttribute("on", "true");
                 clipPlane.setAttribute("value", newpos);
                 clipPlane.setAttribute("plane", newpos);
                 get("clipPlane2").setAttribute("plane", '0, -1, 0, ' + (-1*pos));
-                // get("disp").innerHTML = "y = "+(-1*pos);
                 createClipping(pos);
             }
             // else {
@@ -127,7 +125,7 @@ function updateTranslation() {
             get("transx").value+" "+
             get("transy").value+" "+
             get("transz").value;
-    get("translation").setAttribute("translation", translation);
+    get("groupFaceSet2").setAttribute("translation", translation);
 }
 
 /**
@@ -193,7 +191,7 @@ Promise.all([loadPositionsPromise, loadIndexPromise, loadTriIndexPromise,
         TETRAMESH.initTetraMesh(positions, tetraArray, data);
         POS_MIN = TETRAMESH.octree_.aabbLoose_.min_[1];
         POS_MAX = TETRAMESH.octree_.aabbLoose_.max_[1];
-        CAN_START = true;
+        HAS_SLICE = true;
         // Set the data of the IndexedFaceSet
         x3domUtils.setIndexFaceSet({"coord": positions,
                                     "coordIndex": triArray,
