@@ -41,31 +41,37 @@ function initEventListener(){
             get("translation").setAttribute("translation", "0 0 0");
         }, false );
 
-    get("hideButton").addEventListener(
+    get("cboxUncolored").addEventListener(
         'click',
         function(event){
             var test = get("groupFaceSet2").getAttribute("render");
             if (test == "true"){
                 get("groupFaceSet2").setAttribute("render", "false");
-                get("hideButton").innerHTML= "show grey part";
+                get("transx").disabled = true;
+                get("transy").disabled = true;
+                get("transz").disabled = true;
+                get("cboxUncolored").checked = false;
             }
             else {
                 get("groupFaceSet2").setAttribute("render", "true");
-                get("hideButton").innerHTML= "hide grey part";
+                get("transx").disabled = false;
+                get("transy").disabled = false;
+                get("transz").disabled = false;
+                get("cboxUncolored").checked = true;
             }
         }, false );
 
-    get("clipOnButton").addEventListener(
+    get("cboxClipPlane").addEventListener(
         'click',
         function(event){
             var test = get("triSetTransform").getAttribute("render");
             if (test == "true"){
                 get("triSetTransform").setAttribute("render", "false");
-                get("clipOnButton").innerHTML= "show clip plane";
+                get("cboxClipPlane").checked= false;
             }
             else {
                 get("triSetTransform").setAttribute("render", "true");
-                get("clipOnButton").innerHTML= "hide clip Plane";
+                get("cboxClipPlane").checked= true;
             }
         }, false );
 
@@ -129,12 +135,14 @@ function updateTranslation() {
  */
 function updateThreshold() {
     var sliderValues = utils.getSliderMinMax("threshold", DATA_REAL_MIN, DATA_REAL_MAX);
+    if (get("cbox2").checked) {
     get("faceSetThreshold").setAttribute("lowerBound", sliderValues.min);
     get("faceSetThreshold").setAttribute("upperBound", sliderValues.max);
-    get("triSetThreshold").setAttribute("lowerBound", sliderValues.min);
-    get("triSetThreshold").setAttribute("upperBound", sliderValues.max);
-    get("faceSetThreshold2").setAttribute("lowerBound", sliderValues.min);
-    get("faceSetThreshold2").setAttribute("upperBound", sliderValues.max);
+    get("triSetThreshold").setAttribute("lowerbound", sliderValues.min);
+    get("triSetThreshold").setAttribute("upperbound", sliderValues.max);
+    }
+    get("faceSetThreshold2").setAttribute("lowerbound", sliderValues.min);
+    get("faceSetThreshold2").setAttribute("upperbound", sliderValues.max);
 }
 
 /**
