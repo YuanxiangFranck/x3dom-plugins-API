@@ -127,39 +127,40 @@
                   </shape>
                   <ClipPlane id="clipPlane" plane='0 1 0 0'></ClipPlane>
                 </group>
-                  <Transform id="groupFaceSet2" render="true" translation='0 -1 0'>
-                    <shape>
-                      <Appearance id="app2">
-                        <Material> </Material>
-                        <ImageTexture
-                           url='"./images/map-banded2.png"'
-                           repeatS='false'
-                           repeatT='false' >
-                        </ImageTexture>
-                      </Appearance>
-                      <IndexedFaceSet
-                         id="faceSet2" solid="false"  ccw='false'
-                         coordIndex='' normalPerVertex='false'>
-                        <Coordinate
-                           id="faceSetCoord2" point=""></Coordinate>
-                        <Normal
-                           id="faceSetNormal2" vector="" > </Normal>
-                        <IsoColor
-                           id="faceSetIsoColor2" max="" min=""
-                           dataName="faceSetData2"> </IsoColor>
-                        <Threshold
-                           id="faceSetThreshold2" upperBound="" lowerBound=""
-                           dataName="faceSetData2"> </Threshold>
-                        <FloatVertexAttribute
-                           id="faceSetAttr2" numComponents="1" value=""
-                           name="faceSetData2" > </FloatVertexAttribute>
-                      </IndexedFaceSet>
-                    </shape>
-                    <ClipPlane id="clipPlane2" plane='0 -1 0 0'></ClipPlane>
-                  </Transform>
+                <Transform id="groupFaceSet2" render="true" translation='0 -1 0'>
+                  <shape>
+                    <Appearance id="app2">
+                      <Material> </Material>
+                      <ImageTexture
+                         url='"./images/map-banded2.png"'
+                         repeatS='false'
+                         repeatT='false' >
+                      </ImageTexture>
+                    </Appearance>
+                    <IndexedFaceSet
+                       id="faceSet2" solid="false"  ccw='false'
+                       coordIndex='' normalPerVertex='false'>
+                      <Coordinate
+                         id="faceSetCoord2" point=""></Coordinate>
+                      <Normal
+                         id="faceSetNormal2" vector="" > </Normal>
+                      <IsoColor
+                         id="faceSetIsoColor2" max="" min=""
+                         dataName="faceSetData2"> </IsoColor>
+                      <Threshold
+                         id="faceSetThreshold2" upperBound="" lowerBound=""
+                         dataName="faceSetData2"> </Threshold>
+                      <FloatVertexAttribute
+                         id="faceSetAttr2" numComponents="1" value=""
+                         name="faceSetData2" > </FloatVertexAttribute>
+                    </IndexedFaceSet>
+                  </shape>
+                  <ClipPlane id="clipPlane2" plane='0 -1 0 0'></ClipPlane>
+                </Transform>
                 <group id="triSetTransform" render="true">
                   <shape>
                     <appearance>
+                      <!-- <Material > </Material> -->
                       <ImageTexture
                          url='"./images/map-banded.png"'
                          repeatS='false'
@@ -171,12 +172,14 @@
                       <Coordinate
                          id='triSetCoordinate' point=" " > </Coordinate>
                       <IsoColor
-                         id="triSetIsoColor" dataName="triSetData" max="" min=""></IsoColor>
+                         id="triSetIsoColor" max="" min=""
+                         dataName="triSetData" ></IsoColor>
                       <Threshold
                          id="triSetThreshold" upperBound="" lowerBound=""
                          dataName="triSetData"> </Threshold>
                       <FloatVertexAttribute
-                         id="triSetAttr" name="triSetData" numComponents="1" value=""> </FloatVertexAttribute>
+                         id="triSetAttr" numComponents="1" value=""
+                         name="triSetData" > </FloatVertexAttribute>
                     </TriangleSet>
                   </shape>
                 </group>
