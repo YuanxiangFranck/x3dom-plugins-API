@@ -16,6 +16,9 @@ var loadTriIndexPromise  = jBinary.loadData(datadir+'faces.bin.gz');
 var loadDataPromise      = jBinary.loadData(datadir+'data.bin.gz');
 var loadNormalsPromise   = jBinary.loadData(datadir+'normals.bin.gz');
 
+var loadPromise = new Promise(function(resolve,reject){
+    document.addEventListener("load", resolve );
+});
 var TETRAMESH = new TetraMesh();
 var CAN_START  = false;
 var DATA_REAL_MIN = 0;
@@ -157,7 +160,7 @@ function createClipping(pos){
  * Main : lunched after loading all the data
  */
 Promise.all([loadPositionsPromise, loadIndexPromise, loadTriIndexPromise,
-             loadDataPromise, loadNormalsPromise])
+             loadDataPromise, loadNormalsPromise, loadPromise])
     .then(function(bufferArrays) {
         var posArray    = new Float32Array(bufferArrays[0]);
         var tetraArray  = new Uint32Array(bufferArrays[1]);
