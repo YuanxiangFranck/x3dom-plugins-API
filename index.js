@@ -3,7 +3,8 @@ var jBinary     = require("jbinary");
 var x3domUtils  = require('./lib/myx3domutils');
 var utils       = require('./lib/utils');
 
-x3dom = require('./lib/x3dom.debug.js').initX3dom();
+// x3dom = require('./lib/x3dom.debug.js').initX3dom();
+x3dom = require('./x3dom/dist/x3dom.debug.js').initX3dom();
 x3domUtils.getx3dom(x3dom);
 require('./threshold.js').new_node(x3dom);
 require('./isoColor.js').new_node(x3dom);
@@ -38,22 +39,22 @@ function initEventListener(){
             get("transx").value=0;
             get("transy").value=0;
             get("transz").value=0;
-            get("groupFaceSet2").setAttribute("translation", "0 0 0");
+            get("translation").setAttribute("translation", "0 0 0");
         }, false );
 
     get("cboxUncolored").addEventListener(
         'click',
         function(event){
-            var test = get("groupFaceSet2").getAttribute("render");
+            var test = get("faceSetShape2").getAttribute("render");
             if (test == "true"){
-                get("groupFaceSet2").setAttribute("render", "false");
+                get("faceSetShape2").setAttribute("render", "false");
                 get("transx").disabled = true;
                 get("transy").disabled = true;
                 get("transz").disabled = true;
                 get("cboxUncolored").checked = false;
             }
             else {
-                get("groupFaceSet2").setAttribute("render", "true");
+                get("faceSetShape2").setAttribute("render", "true");
                 get("transx").disabled = false;
                 get("transy").disabled = false;
                 get("transz").disabled = false;
@@ -64,13 +65,13 @@ function initEventListener(){
     get("cboxClipPlane").addEventListener(
         'click',
         function(event){
-            var test = get("triSetTransform").getAttribute("render");
+            var test = get("triSetShape").getAttribute("render");
             if (test == "true"){
-                get("triSetTransform").setAttribute("render", "false");
+                get("triSetShape").setAttribute("render", "false");
                 get("cboxClipPlane").checked= false;
             }
             else {
-                get("triSetTransform").setAttribute("render", "true");
+                get("triSetShape").setAttribute("render", "true");
                 get("cboxClipPlane").checked= true;
             }
         }, false );
@@ -125,7 +126,7 @@ function updateTranslation() {
             get("transx").value+" "+
             get("transy").value+" "+
             get("transz").value;
-    get("groupFaceSet2").setAttribute("translation", translation);
+    get("translation").setAttribute("translation", translation);
 }
 
 /**
@@ -133,9 +134,9 @@ function updateTranslation() {
  */
 function updateThreshold() {
     var sliderValues = utils.getSliderMinMax("threshold", DATA_REAL_MIN, DATA_REAL_MAX);
-    if (get("cbox2").checked) {
-    get("faceSetThreshold").setAttribute("lowerBound", sliderValues.min);
-    get("faceSetThreshold").setAttribute("upperBound", sliderValues.max);
+    if (get("cboxthreshold").checked) {
+    get("faceSetThreshold").setAttribute("lowerbound", sliderValues.min);
+    get("faceSetThreshold").setAttribute("upperbound", sliderValues.max);
     get("triSetThreshold").setAttribute("lowerbound", sliderValues.min);
     get("triSetThreshold").setAttribute("upperbound", sliderValues.max);
     }

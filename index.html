@@ -96,7 +96,7 @@
             <Transform rotation="1 -0.5 0 1.57" >
               <Transform rotation="0 0 1 1.57" >
                 <group>
-                  <shape id="shape">
+                  <shape id="faceSetShape">
                     <Appearance id="app1">
                       <Material > </Material>
                       <ImageTexture
@@ -127,8 +127,8 @@
                   </shape>
                   <ClipPlane id="clipPlane" plane='0 1 0 0'></ClipPlane>
                 </group>
-                <Transform id="groupFaceSet2" render="true" translation='0 -1 0'>
-                  <shape>
+                <Transform id="translation" translation='0 -1 0'>
+                  <shape id="faceSetShape2" render="true" >
                     <Appearance id="app2">
                       <Material> </Material>
                       <ImageTexture
@@ -157,32 +157,31 @@
                   </shape>
                   <ClipPlane id="clipPlane2" plane='0 -1 0 0'></ClipPlane>
                 </Transform>
-                <group id="triSetTransform" render="true">
-                  <shape>
-                    <appearance>
-                      <!-- <Material > </Material> -->
-                      <ImageTexture
-                         url='"./images/map-banded.png"'
-                         repeatS='false'
-                         repeatT='false' >
-                      </ImageTexture>
-                    </appearance>
-                    <TriangleSet
-                       id='triset' solid='false' colorPerVertex='true'>
-                      <Coordinate
-                         id='triSetCoordinate' point=" " > </Coordinate>
-                      <IsoColor
-                         id="triSetIsoColor" max="" min=""
-                         dataName="triSetData" ></IsoColor>
-                      <Threshold
-                         id="triSetThreshold" upperBound="" lowerBound=""
-                         dataName="triSetData"> </Threshold>
-                      <FloatVertexAttribute
-                         id="triSetAttr" numComponents="1" value=""
-                         name="triSetData" > </FloatVertexAttribute>
-                    </TriangleSet>
-                  </shape>
-                </group>
+                <shape id="triSetShape" render="true">
+                  <Appearance>
+                    <!-- <Material > </Material> -->
+                    <ImageTexture
+                       url='"./images/map-banded.png"'
+                       repeatS='false'
+                       repeatT='false'
+                       lit='true'>
+                    </ImageTexture>
+                  </Appearance>
+                  <TriangleSet
+                     id='triset' solid='false'>
+                    <Coordinate
+                       id='triSetCoordinate' point=" " > </Coordinate>
+                    <IsoColor
+                       id="triSetIsoColor" max="" min=""
+                       dataName="triSetData" ></IsoColor>
+                    <Threshold
+                       id="triSetThreshold" upperBound="" lowerBound=""
+                       dataName="triSetData"> </Threshold>
+                    <FloatVertexAttribute
+                       id="triSetAttr" numComponents="1" value=""
+                       name="triSetData" > </FloatVertexAttribute>
+                  </TriangleSet>
+                </shape>
               </Transform>
             </Transform>
           </scene>
@@ -211,8 +210,8 @@
                        min="0" max="1" step="0.01" value="0"> </input></p>
             <p> <input id="threshold2" type="range"
                        min="0" max="1" step="0.01" value="1"> </input></p>
-            <p><input type="checkbox" id="cbox2">
-              <label for="cbox2">threshold: all</label></p>
+            <p><input type="checkbox" id="cboxthreshold">
+              <label for="cboxthreshold">threshold: all</label></p>
           </div>
           <div class="element_menu">
             <b>Translation:</b>
