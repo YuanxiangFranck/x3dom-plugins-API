@@ -96,68 +96,68 @@
             <Transform rotation="1 -0.5 0 1.57" >
               <Transform rotation="0 0 1 1.57" >
                 <group>
-                  <shape id="faceSetShape">
-                    <Appearance id="app1">
+                  <shape id='faceSetShape'>
+                    <Appearance id='app1'>
                       <Material > </Material>
                       <ImageTexture
                          url='"./images/map-banded.png"'
-                         repeatS='false'
-                         repeatT='false' >
+                         repeatS="false"
+                         repeatT="false" >
                       </ImageTexture>
                     </Appearance>
                     <!-- All the data (coordIndex, coord, textCoord,
                          normal) are set within index.js -->
                     <IndexedFaceSet
-                       id="faceSet" solid="false"  ccw='false'
-                       coordIndex='' normalPerVertex='false'>
+                       id='faceSet' solid="false"  ccw="false"
+                       coordIndex="" normalPerVertex="false">
                       <Coordinate
-                         id="faceSetCoord" point=""></Coordinate>
+                         id='faceSetCoord' point=""></Coordinate>
                       <Normal
-                         id="faceSetNormal" vector="" > </Normal>
+                         id='faceSetNormal' vector="" > </Normal>
                       <IsoColor
-                         id="faceSetIsoColor" max="" min=""
+                         id='faceSetIsoColor' max="" min=""
                          dataName="faceSetData"> </IsoColor>
                       <FloatVertexAttribute
-                         id="faceSetAttr" numComponents="1" value=""
+                         id='faceSetAttr' numComponents="1" value=""
                          name="faceSetData" > </FloatVertexAttribute>
                       <Threshold
-                         id="faceSetThreshold" upperBound="" lowerBound=""
+                         id='faceSetThreshold' upperBound="" lowerBound=""
                          dataName="faceSetData"> </Threshold>
                     </IndexedFaceSet>
                   </shape>
-                  <ClipPlane id="clipPlane" plane='0 1 0 0'></ClipPlane>
+                  <ClipPlane id='clipPlane' plane="0 1 0 0"></ClipPlane>
                 </group>
-                <Transform id="translation" translation='0 -1 0'>
-                  <shape id="faceSetShape2" render="true" >
-                    <Appearance id="app2">
+                <Transform id='translation' translation="0 -1 0">
+                  <shape id='faceSetShape2' render="true" >
+                    <Appearance id='app2'>
                       <Material> </Material>
                       <ImageTexture
                          url='"./images/map-banded2.png"'
-                         repeatS='false'
-                         repeatT='false' >
+                         repeatS="false"
+                         repeatT="false" >
                       </ImageTexture>
                     </Appearance>
                     <IndexedFaceSet
-                       id="faceSet2" solid="false"  ccw='false'
-                       coordIndex='' normalPerVertex='false'>
+                       id='faceSet2' solid="false"  ccw="false"
+                       coordIndex='' normalPerVertex="false">
                       <Coordinate
-                         id="faceSetCoord2" point=""></Coordinate>
+                         id='faceSetCoord2' point=""></Coordinate>
                       <Normal
-                         id="faceSetNormal2" vector="" > </Normal>
+                         id='faceSetNormal2' vector="" > </Normal>
                       <IsoColor
-                         id="faceSetIsoColor2" max="" min=""
+                         id='faceSetIsoColor2' max="" min=""
                          dataName="faceSetData2"> </IsoColor>
                       <Threshold
-                         id="faceSetThreshold2" upperBound="" lowerBound=""
+                         id='faceSetThreshold2' upperBound="" lowerBound=""
                          dataName="faceSetData2"> </Threshold>
                       <FloatVertexAttribute
-                         id="faceSetAttr2" numComponents="1" value=""
+                         id='faceSetAttr2' numComponents="1" value=""
                          name="faceSetData2" > </FloatVertexAttribute>
                     </IndexedFaceSet>
                   </shape>
-                  <ClipPlane id="clipPlane2" plane='0 -1 0 0'></ClipPlane>
+                  <ClipPlane id='clipPlane2' plane='0 -1 0 0'></ClipPlane>
                 </Transform>
-                <shape id="triSetShape" render="true">
+                <shape id='triSetShape' render="true">
                   <Appearance>
                     <!-- <Material > </Material> -->
                     <ImageTexture
@@ -172,13 +172,13 @@
                     <Coordinate
                        id='triSetCoordinate' point=" " > </Coordinate>
                     <IsoColor
-                       id="triSetIsoColor" max="" min=""
+                       id='triSetIsoColor' max="" min=""
                        dataName="triSetData" ></IsoColor>
                     <Threshold
-                       id="triSetThreshold" upperBound="" lowerBound=""
+                       id='triSetThreshold' upperBound="" lowerBound=""
                        dataName="triSetData"> </Threshold>
                     <FloatVertexAttribute
-                       id="triSetAttr" numComponents="1" value=""
+                       id='triSetAttr' numComponents="1" value=""
                        name="triSetData" > </FloatVertexAttribute>
                   </TriangleSet>
                 </shape>
