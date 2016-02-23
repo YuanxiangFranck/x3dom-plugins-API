@@ -2,7 +2,7 @@
 
 ## Presentation
 
-During my internship, I worked on the creation of x3dom-based tools
+I worked on the creation of x3dom-based tools
 for mesh data visualization and analysis. I wanted to create new DOM
 nodes that integrate nicely in a standard x3dom tree, namely
 iso-color, threshold, clip-plane.
@@ -228,11 +228,10 @@ I am currently working of the creation of new nodes (Clip Plane) with the API.
 ## Authors and Contributors
 
 This project was a prototype created by
-[YuanxiangFranck](https://github.com/YuanxiangFranck/) intern at
+[YuanxiangFranck](https://github.com/YuanxiangFranck/) for
 [Logilab](https://www.logilab.fr/). This work is a part of the
 [Open Dream Kit project](http://opendreamkit.org/).
 
-Dates : December 2015 / February 2016
 
 ![](./other/logilab.png)
 
