@@ -233,5 +233,5 @@ This project was a prototype created by
 [Open Dream Kit project](http://opendreamkit.org/).
 
 
-![](./other/logilab.png)
+![](./images/logilab.png)
 
