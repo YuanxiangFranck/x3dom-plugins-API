@@ -1,4 +1,4 @@
-let TetraMesh   = require('./lib/clipUtils/mytetraMesh').TetraMesh;
+let TetraMesh   = require('./lib/clipUtils/mytetraMesh');
 let jBinary     = require("jbinary");
 let x3domUtils  = require('./lib/myx3domutils');
 let utils       = require('./lib/utils');
