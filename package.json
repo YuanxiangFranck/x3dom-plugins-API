@@ -21,7 +21,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "python server.py",
     "watch": "watchify  index.js -o bundle.js -v --debug",
-    "build": "browserify index.js -v -t [ babelify --presets [ es2015 ] ] | uglifyjs -mcv > bundle.js",
+    "minbuild": "browserify index.js -v -t [ babelify --presets [ es2015 ] ] | uglifyjs -mcv > bundle.js",
+    "build": "browserify index.js -v -t [ babelify --presets [ es2015 ] ] -o bundle.js",
     "start": "npm run server | npm run watch"
   },
   "author": "",
