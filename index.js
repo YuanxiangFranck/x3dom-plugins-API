@@ -1,7 +1,7 @@
-var TetraMesh   = require('./lib/clipUtils/mytetraMesh').TetraMesh;
-var jBinary     = require("jbinary");
-var x3domUtils  = require('./lib/myx3domutils');
-var utils       = require('./lib/utils');
+let TetraMesh   = require('./lib/clipUtils/mytetraMesh').TetraMesh;
+let jBinary     = require("jbinary");
+let x3domUtils  = require('./lib/myx3domutils');
+let utils       = require('./lib/utils');
 
 let x3dom = require('./lib/x3dom.debug.js');
 // x3dom = require('./x3dom/dist/x3dom.debug.js').initX3dom();
@@ -9,24 +9,24 @@ x3domUtils.getx3dom(x3dom);
 require('./threshold.js')(x3dom);
 require('./isoColor.js')(x3dom);
 
-var datadir = "./binGeo/piston/";
+let datadir = "./binGeo/piston/";
 // Jbinary read and load the binary files and return the arraybuffer with a promise
-var loadPositionsPromise = jBinary.loadData(datadir+'coord.bin.gz');
-var loadIndexPromise     = jBinary.loadData(datadir+'tetras.bin.gz');
-var loadTriIndexPromise  = jBinary.loadData(datadir+'faces.bin.gz');
-var loadDataPromise      = jBinary.loadData(datadir+'data.bin.gz');
-var loadNormalsPromise   = jBinary.loadData(datadir+'normals.bin.gz');
+let loadPositionsPromise = jBinary.loadData(datadir+'coord.bin.gz');
+let loadIndexPromise     = jBinary.loadData(datadir+'tetras.bin.gz');
+let loadTriIndexPromise  = jBinary.loadData(datadir+'faces.bin.gz');
+let loadDataPromise      = jBinary.loadData(datadir+'data.bin.gz');
+let loadNormalsPromise   = jBinary.loadData(datadir+'normals.bin.gz');
 
-var loadPromise = new Promise(function(resolve,reject){
+let loadPromise = new Promise(function(resolve,reject){
     document.addEventListener("load", resolve );
 });
-var TETRAMESH = new TetraMesh();
-var HAS_SLICE  = false;
-var DATA_REAL_MIN = 0;
-var DATA_REAL_MAX = 0;
+let TETRAMESH = new TetraMesh();
+let HAS_SLICE  = false;
+let DATA_REAL_MIN = 0;
+let DATA_REAL_MAX = 0;
 // Lower and upper bound for the geometry ( y axis)
-var POS_MIN = 0;
-var POS_MAX = 0;
+let POS_MIN = 0;
+let POS_MAX = 0;
 
 /**
  * Set the event listener on the element in the dom
@@ -45,7 +45,7 @@ function initEventListener(){
     get("cboxUncolored").addEventListener(
         'click',
         function(event){
-            var test = get("faceSetShape2").getAttribute("render");
+            let test = get("faceSetShape2").getAttribute("render");
             if (test == "true"){
                 get("faceSetShape2").setAttribute("render", "false");
                 get("transx").disabled = true;
@@ -65,7 +65,7 @@ function initEventListener(){
     get("cboxClipPlane").addEventListener(
         'click',
         function(event){
-            var test = get("triSetShape").getAttribute("render");
+            let test = get("triSetShape").getAttribute("render");
             if (test == "true"){
                 get("triSetShape").setAttribute("render", "false");
                 get("cboxClipPlane").checked= false;
@@ -80,15 +80,15 @@ function initEventListener(){
     get("clipSlider").addEventListener(
         'input',
         function(event){
-            var pos = -1*(POS_MIN + this.value*(POS_MAX-POS_MIN));
-            var clipPlane = get("clipPlane");
+            let pos = -1*(POS_MIN + this.value*(POS_MAX-POS_MIN));
+            let clipPlane = get("clipPlane");
             if (this.value == 0) {
                 clipPlane.setAttribute("on", "false");
                 get("clipPlane2").setAttribute("plane", '0, -1, 0, ' + (-1*pos));
             }
             else if (HAS_SLICE){
                 // Equation is a*X + b*Y +c*Z + d = 0
-                var newpos = '0, 1, 0, ' + pos;
+                let newpos = '0, 1, 0, ' + pos;
                 clipPlane.setAttribute("on", "true");
                 clipPlane.setAttribute("value", newpos);
                 clipPlane.setAttribute("plane", newpos);
@@ -114,7 +114,7 @@ function initEventListener(){
  * Update the map color with the new border values
  */
 function updateIsoColor() {
-    var sliderValues = utils.getSliderMinMax("isoColor", DATA_REAL_MIN, DATA_REAL_MAX);
+    let sliderValues = utils.getSliderMinMax("isoColor", DATA_REAL_MIN, DATA_REAL_MAX);
     get("faceSetIsoColor").setAttribute("min", sliderValues.min);
     get("faceSetIsoColor").setAttribute("max", sliderValues.max);
     get("triSetIsoColor").setAttribute("min", sliderValues.min);
@@ -122,7 +122,7 @@ function updateIsoColor() {
 }
 
 function updateTranslation() {
-    var translation =
+    let translation =
             get("transx").value+" "+
             get("transy").value+" "+
             get("transz").value;
@@ -133,7 +133,7 @@ function updateTranslation() {
  * Update the map color with the new border values
  */
 function updateThreshold() {
-    var sliderValues = utils.getSliderMinMax("threshold", DATA_REAL_MIN, DATA_REAL_MAX);
+    let sliderValues = utils.getSliderMinMax("threshold", DATA_REAL_MIN, DATA_REAL_MAX);
     if (get("cboxthreshold").checked) {
     get("faceSetThreshold").setAttribute("lowerbound", sliderValues.min);
     get("faceSetThreshold").setAttribute("upperbound", sliderValues.max);
@@ -150,10 +150,10 @@ function updateThreshold() {
  */
 function createClipping(pos){
     // Plane Equation is a*X + b*Y +c*Z + d = 0
-    var res = TETRAMESH.makeSlice(0, 1, 0, Number(pos));
-    var triCoord = res["vertex"];
-    var trisetData = res["data"];
-    var sliderValues;
+    let res = TETRAMESH.makeSlice(0, 1, 0, Number(pos));
+    let triCoord = res["vertex"];
+    let trisetData = res["data"];
+    let sliderValues;
     if (triCoord.length !== 0) {
         x3domUtils.updateCoordPoint(get("triSetCoordinate"), triCoord);
         x3domUtils.updateDataValue(get("triSetAttr"), trisetData);
@@ -169,13 +169,13 @@ function createClipping(pos){
 Promise.all([loadPositionsPromise, loadIndexPromise, loadTriIndexPromise,
              loadDataPromise, loadNormalsPromise, loadPromise])
     .then(function(bufferArrays) {
-        var posArray    = new Float32Array(bufferArrays[0]);
-        var tetraArray  = new Uint32Array(bufferArrays[1]);
-        var triArray    = new Int32Array(bufferArrays[2]);
-        var dataArray   = new Float32Array(bufferArrays[3]);
-        var normalArray = new Float32Array(bufferArrays[4]);
-        var positions   = utils.scale_center(posArray);
-        var data = dataArray;
+        let posArray    = new Float32Array(bufferArrays[0]);
+        let tetraArray  = new Uint32Array(bufferArrays[1]);
+        let triArray    = new Int32Array(bufferArrays[2]);
+        let dataArray   = new Float32Array(bufferArrays[3]);
+        let normalArray = new Float32Array(bufferArrays[4]);
+        let positions   = utils.scale_center(posArray);
+        let data = dataArray;
         DATA_REAL_MIN = Math.min.apply(null, data);
         DATA_REAL_MAX = Math.max.apply(null, data);
         get("faceSetIsoColor").setAttribute("min",DATA_REAL_MIN);
