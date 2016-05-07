@@ -1,7 +1,5 @@
-/** @namespace x3dom.nodeTypes */
-var defineClass = x3dom.defineClass;
-
 function new_node(x3dom){
+    var defineClass = x3dom.defineClass;
     x3dom.registerNodeType(
         "IsoColor",
         "Custom",
@@ -86,4 +84,4 @@ function new_node(x3dom){
     );
 }
 
-exports.new_node = new_node;
+module.exports = new_node;

@@ -3,11 +3,11 @@ var jBinary     = require("jbinary");
 var x3domUtils  = require('./lib/myx3domutils');
 var utils       = require('./lib/utils');
 
-x3dom = require('./lib/x3dom.debug.js').initX3dom();
+let x3dom = require('./lib/x3dom.debug.js');
 // x3dom = require('./x3dom/dist/x3dom.debug.js').initX3dom();
 x3domUtils.getx3dom(x3dom);
-require('./threshold.js').new_node(x3dom);
-require('./isoColor.js').new_node(x3dom);
+require('./threshold.js')(x3dom);
+require('./isoColor.js')(x3dom);
 
 var datadir = "./binGeo/piston/";
 // Jbinary read and load the binary files and return the arraybuffer with a promise
