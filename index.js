@@ -2,10 +2,9 @@ let TetraMesh   = require('./lib/clipUtils/mytetraMesh');
 let jBinary     = require("jbinary");
 let x3domUtils  = require('./lib/myx3domutils');
 let utils       = require('./lib/utils');
-
+let get = utils.get; // alia for document.getElementById
 let x3dom = require('./lib/x3dom.debug.js');
-// x3dom = require('./x3dom/dist/x3dom.debug.js').initX3dom();
-x3domUtils.getx3dom(x3dom);
+
 require('./threshold.js')(x3dom);
 require('./isoColor.js')(x3dom);
 
@@ -204,5 +203,3 @@ Promise.all([loadPositionsPromise, loadIndexPromise, loadTriIndexPromise,
         // Set slider description
         // get("disp").innerHTML = "no clipping";
     });
-
-function get(name){ return document.getElementById(name); }
