@@ -3,8 +3,8 @@ var jBinary     = require("jbinary");
 var x3domUtils  = require('./lib/myx3domutils');
 var utils       = require('./lib/utils');
 
-// x3dom = require('./lib/x3dom.debug.js').initX3dom();
-x3dom = require('./x3dom/dist/x3dom.debug.js').initX3dom();
+x3dom = require('./lib/x3dom.debug.js').initX3dom();
+// x3dom = require('./x3dom/dist/x3dom.debug.js').initX3dom();
 x3domUtils.getx3dom(x3dom);
 require('./threshold.js').new_node(x3dom);
 require('./isoColor.js').new_node(x3dom);
