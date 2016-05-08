@@ -1,4 +1,5 @@
-/** X3DOM Runtime, http://www.x3dom.org/ 1.7.2-dev - 3cf614b0d65ebf3e449f9505171dd37aec475da7 - Tue Feb 9 10:23:30 2016 +0100 */function initX3dom(){/*
+/** X3DOM Runtime, http://www.x3dom.org/ 1.7.2-dev - 3cf614b0d65ebf3e449f9505171dd37aec475da7 - Tue Feb 9 10:23:30 2016 +0100 */
+function initX3dom(){/*
                                                                                                                                                       * X3DOM JavaScript Library
                                                                                                                                                       * http://www.x3dom.org
                                                                                                                                                       *

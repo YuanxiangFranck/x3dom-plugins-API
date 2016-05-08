@@ -40,3 +40,4 @@ function getSliderMinMax(name, DATA_REAL_MIN, DATA_REAL_MAX){
 function get(name){ return document.getElementById(name); }
 exports.getSliderMinMax = getSliderMinMax;
 exports.scale_center = scale_center;
+exports.get = get;

@@ -20,9 +20,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "python server.py",
-    "watch": "watchify  index.js -o bundle.js -v --debug",
-    "minbuild": "browserify index.js -v -t [ babelify --presets [ es2015 ] ] | uglifyjs -mcv > bundle.js",
-    "build": "browserify index.js -v -t [ babelify --presets [ es2015 ] ] -o bundle.js",
+    "watch": "watchify  src/index.js -o bundle.js -v --debug",
+    "minbuild": "browserify src/index.js -v -t [ babelify --presets [ es2015 ] ] | uglifyjs -mcv > bundle.js",
+    "build": "browserify src/index.js -v -t [ babelify --presets [ es2015 ] ] -o bundle.js",
     "start": "npm run server | npm run watch"
   },
   "author": "",
