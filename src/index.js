@@ -1,12 +1,14 @@
-let TetraMesh   = require('./lib/clipUtils/mytetraMesh');
 let jBinary     = require("jbinary");
-let x3domUtils  = require('./lib/myx3domutils');
-let utils       = require('./lib/utils');
-let get = utils.get; // alia for document.getElementById
-let x3dom = require('./lib/x3dom.debug.js');
 
-require('./threshold.js')(x3dom);
-require('./isoColor.js')(x3dom);
+let TetraMesh   = require('./clipUtils/mytetraMesh');
+let x3domUtils  = require('./x3dom/myx3domutils');
+
+let utils       = require('./utils');
+let get = utils.get; // alia for document.getElementById
+
+let x3dom = require('./x3dom/x3dom.debug.js');
+require('./x3dom/plugins/threshold.js')(x3dom);
+require('./x3dom/plugins/isoColor.js')(x3dom);
 
 let datadir = "./binGeo/piston/";
 // Jbinary read and load the binary files and return the arraybuffer with a promise
