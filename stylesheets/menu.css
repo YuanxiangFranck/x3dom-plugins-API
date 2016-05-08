@@ -1,3 +1,9 @@
+x3d
+{
+    background: rgba(0, 128, 100, 0.4);
+    display: inline-block;
+    float: none;
+}
 .menu
 {
     display: flex;
@@ -25,3 +31,50 @@
 /*     max-width: 800px; */
 /*     height: 600px: */
 /* } */
+.dbl-slider-container{
+    width: 150px;
+}
+div.range-slider{
+    height: 20px;
+    width: 0;
+}
+div.range-slider input {
+    pointer-events: none;
+    position: absolute;
+    overflow: hidden;
+    width: 150px;
+    outline: none;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    -webkit-appearance: slider-horizontal;
+}
+
+div.range-slider input::-webkit-slider-thumb {
+    pointer-events: all;
+    position: relative;
+    z-index: 1;
+    outline: 0;
+}
+
+div.range-slider input::-moz-range-thumb {
+    pointer-events: all;
+    position: relative;
+    z-index: 10;
+    -moz-appearance: none;
+    width: 9px;
+}
+div.range-slider input::-moz-range-track {
+    position: relative;
+    z-index: -1;
+    background-color: rgba(0, 0, 0, 1);
+    border: 0;
+}
+div.range-slider input:last-of-type::-moz-range-track {
+    -moz-appearance: none;
+    background: none transparent;
+    border: 0;
+}
+div.range-slider input[type=range]::-moz-focus-outer {
+    border: 0;
+}
