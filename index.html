@@ -188,13 +188,20 @@
             <p><input type="checkbox" id="cboxUncolored" checked=true>
               <label for="cboxUncolored">show uncolored part</label></p>
           </div>
-          <div class="element_menu">
-            <p><label for="isoColor1">Color map:</label></p>
-            <p><input id="isoColor1" type="range"
-                      min="0" max="1" step="0.01" value="0"> </input></p>
-            <p><input id="isoColor2" type="range"
-                      min="0" max="1" step="0.01" value="1"> </input></p>
-          </div>
+
+          <form class="element_menu" id="colormap-form">
+            <fieldset>
+              <legend>Color map:</legend>
+              <div class="dbl-slider-container">
+                <div class="range-slider">
+                <input id="isoColor1" type="range" name="values"
+                      min="0" max="1" step="0.01" value="0"/>
+                <input id="isoColor2" type="range" name="values"
+                       min="0" max="1" step="0.01" value="1" />
+                </div>
+            </fieldset>
+          </form>
+
           <form class="element_menu" id="threshold-form">
             <fieldset>
               <legend>Threshold:</legend>
