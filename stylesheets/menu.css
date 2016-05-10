@@ -22,9 +22,8 @@ x3d
     text-align: center;
     border: hidden;
     height: 200px;
-    margin-right: 30px;
-    margin-left: 30px;
     font-weight: bold;
+    width: 175px;
 }
 
 /* #x3dElem { */
