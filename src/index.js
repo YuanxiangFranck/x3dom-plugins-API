@@ -134,7 +134,7 @@ function updateTranslation() {
  * Update the map color with the new border values
  */
 function updateThreshold() {
-    let sliderValues = utils.getDblSliderFormValues("threshold-form", DATA_REAL_MIN, DATA_REAL_MAX);
+    let sliderValues = utils.getSliderMinMax("threshold", DATA_REAL_MIN, DATA_REAL_MAX);
     if (get("cboxthreshold").checked) {
     get("faceSetThreshold").setAttribute("lowerbound", sliderValues.min);
     get("faceSetThreshold").setAttribute("upperbound", sliderValues.max);
