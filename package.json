@@ -1,30 +1,28 @@
 {
-  "name": "clip",
+  "name": "x3dom-plugins-demo",
   "version": "1.0.0",
   "description": "",
-  "main": "clip",
+  "main": "src/index.js",
   "dependencies": {
     "gl-matrix-mat3": "^2.2.1-npm",
     "gl-matrix-mat4": "^2.2.1-npm",
     "gl-matrix-vec3": "^2.2.1-npm",
     "gl-matrix-vec4": "^2.2.1-npm",
-    "jbinary": "^2.1.3",
-    "uglifyjs": "^2.4.10"
+    "jbinary": "^2.1.3"
   },
   "devDependencies": {
-    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-es2015": "^6.9.0",
     "babelify": "^7.3.0",
     "browserify": "^12.0.1",
-    "watchify": "^3.6.1"
+    "watchify": "^3.6.1",
+    "uglifyjs": "^2.4.10"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "server": "python server.py",
     "watch": "watchify  src/index.js -o bundle.js -v --debug",
-    "minbuild": "browserify src/index.js -v -t [ babelify --presets [ es2015 ] ] | uglifyjs -mcv > bundle.js",
-    "build": "browserify src/index.js -v -t [ babelify --presets [ es2015 ] ] -o bundle.js",
+    "build": "browserify src/index.js -v -t [ babelify --presets [ es2015 ] ] | uglifyjs -mcv > bundle.js",
     "start": "npm run server | npm run watch"
   },
-  "author": "",
+  "author": "YuanxiangFranck",
   "license": "ISC"
 }
